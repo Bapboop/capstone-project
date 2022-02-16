@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+// import LoginForm from './components/auth/LoginForm';
+import LoginPage from './components/Splash/Login';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -26,14 +27,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
-          <LoginForm />
+          <LoginPage />
+          {/* <LoginForm /> */}
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path='/signup' exact={true}>
+          <p> hi from signup</p>
           <SignUpForm />
         </Route>
+      <NavBar />
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

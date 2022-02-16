@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -38,8 +38,15 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    const email = "demo@aa.io";
+    const password = "password";
+    dispatch(login(email, password))
+  }
+
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/feed' />;
   }
 
   return (
@@ -86,7 +93,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className='login-butt' type='submit'>Sign Up</button>
+      <button className='demo-butt' type='submit' onClick={demoLogin}> Demo User</button>
+
     </form>
   );
 };

@@ -6,8 +6,8 @@ from flask_login import UserMixin
 #Follows join table
 follows = db.Table(
     "follows",
-    db.Column("follower_id", db.Integer, db.foreignKey("users.id")),
-    db.Column("followed_id", db.Integer, db.foreignKey("users.id"))
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
 )
 
 
@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     profile_pic = db.Column(db.String(500))
     first_name = db.Column(db.String(50), nullable=False)

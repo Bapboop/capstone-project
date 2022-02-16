@@ -26,9 +26,18 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    const email = "demo@aa.io";
+    const password = "password";
+    dispatch(login(email, password))
   }
+
+  if (user) {
+    return <Redirect to='/feed' />;
+  }
+  
 
   return (
     <form onSubmit={onLogin}>
@@ -56,7 +65,8 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <button className='login-butt' type='submit'>Login</button>
+        <button className='demo-butt' type='submit' onClick={demoLogin}> Demo User</button>
       </div>
     </form>
   );

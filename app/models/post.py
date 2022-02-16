@@ -6,9 +6,10 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     photo_url = db.Column(db.String(500), nullable=False)
-    description = db.Column(db.string(500))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    description = db.Column(db.String(500))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    
     comments = db.relationship('Comment', back_populates='post')
 
 

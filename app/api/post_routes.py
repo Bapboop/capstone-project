@@ -3,7 +3,6 @@ from flask_login import login_fresh, login_required, current_user
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Post, db
 from app.forms.post_form import PostForm
-from app.api.auth_routes import validation_errors_to_error_messages
 
 post_routes = Blueprint('posts', __name__)
 

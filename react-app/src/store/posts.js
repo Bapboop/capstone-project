@@ -1,5 +1,7 @@
 //  ---------------- Action Types:  ----------------
 const GET_POSTS = 'posts/GET_POSTS'
+const CREATE_POST = 'posts/CREATE_POST'
+
 
 
 // ---------------- Action creators:  ----------------
@@ -7,6 +9,14 @@ const getPosts = (posts) => {
     return {
        type: GET_POSTS,
        posts
+    }
+}
+
+
+const createPost = (payload) => {
+    return {
+        type: CREATE_POST,
+        payload
     }
 }
 
@@ -23,6 +33,19 @@ export const getAllPosts = () => async (dispatch) => {
     }
 }
 
+// --------------- CREATE SINGLE POST ------------
+export const createNewPost = (payload) => async (dispatch) => {
+    const response = await fetch('/api/posts/new', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const post = await response.json();
+        dispatch(createPost)
+        return post
+    }
+}
 
 
 
@@ -36,7 +59,7 @@ const postReducer = (state = {}, action) => {
 
     switch (action.type) {
         case GET_POSTS: {
-            action.posts.forEach((post) => {
+            action.posts.posts.forEach((post) => {
                 newState[post.id] = post
             });
             return {

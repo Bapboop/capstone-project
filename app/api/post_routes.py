@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_fresh, login_required, current_user
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Post, db
-from app.forms.post_form import PostForm
+from app.forms.post_form import EditPostForm, PostForm
 
 post_routes = Blueprint('posts', __name__)
 
@@ -59,3 +59,22 @@ def delete_post(id):
     db.session.commit()
 
     return {"POST": "DELETED"}
+
+
+
+# -------------------------- Edit a post: --------------------------------
+@post_routes.route('/<id>/edit', methods=["PUT"])
+def edit_post(id):
+    form = EditPostForm()
+    post = Post.query.get(id)
+    # data = request.json
+    # return post.to_dict()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        post.description = form.data['description']
+
+        db.session.commit()
+
+        return post.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401

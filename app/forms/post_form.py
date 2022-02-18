@@ -10,3 +10,6 @@ class PostForm(FlaskForm):
     photo_url = StringField('photo_url')
     description = StringField('description')
 
+
+class EditPostForm(FlaskForm):
+    description = StringField('description')

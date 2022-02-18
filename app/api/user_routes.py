@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Post, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -17,3 +17,13 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+
+# --------------- GET USERS POSTS -------------
+# TODO: Create a route that gets all posts by a user for their profile.
+@user_routes.route('/<int:id>/posts')
+def users_posts(id):
+    # return 'Is this thing on?'
+    posts = Post.query.filter(Post.user_id == 1).all()
+
+    return {'posts': [post.to_dict() for post in posts]}

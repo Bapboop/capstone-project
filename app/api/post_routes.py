@@ -67,10 +67,9 @@ def delete_post(id):
 def edit_post(id):
     form = EditPostForm()
     post = Post.query.get(id)
-    # data = request.json
-    # return post.to_dict()
-    form['csrf_token'].data = request.cookies['csrf_token']
 
+
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         post.description = form.data['description']
 

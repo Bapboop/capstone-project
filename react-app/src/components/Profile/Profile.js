@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUsersPost } from "../../store/posts";
 import { deletePost } from "../../store/posts";
+import EditPostForm from "../PostForm/EditPost/EditPostForm";
 
 
 
@@ -37,10 +38,11 @@ const Profile = () => {
         <>
         <h1> TEST</h1>
         {posts?.map((post) => (
-          <div key={post.id} className="profile-feed">
-            <img src={post.photo_url} alt="" />
-            <p> {post.description}</p>
-            <button id={post.id} className="delete-button" onClick={handleDelete}>Delete</button>
+          <div key={post?.id} className="profile-feed">
+            <img src={post?.photo_url} alt="" />
+            <p> {post?.description}</p>
+            <button id={post?.id} className="delete-button" onClick={handleDelete}>Delete</button>
+            <EditPostForm post={post}/>
           </div>
         ))}
       </>

@@ -3,6 +3,7 @@ const GET_POSTS = 'posts/GET_POSTS'
 const CREATE_POST = 'posts/CREATE_POST'
 const GET_USERS_POSTS = 'posts/GET_USERS_POSTS'
 const DELETE_POST = 'posts/DELETE_POST'
+const EDIT_POST = '/posts/EDIT_POST'
 
 
 
@@ -34,6 +35,13 @@ const deleteAPost = (postId) => {
     return {
         type: DELETE_POST,
         postId
+    }
+}
+
+const updatePost = (payload) => {
+    return {
+        type: EDIT_POST,
+        payload
     }
 }
 
@@ -69,7 +77,7 @@ export const getUsersPost = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const posts = await response.json();
-        console.log(posts, 'INSIDE THE USERS POST THUNK')
+        // console.log(posts, 'INSIDE THE USERS POST THUNK')
         dispatch(usersPosts(posts))
     }
 }
@@ -87,6 +95,21 @@ export const getUsersPost = (userId) => async (dispatch) => {
         //  return 'Delete is working!'
      }
  }
+
+
+  // --------------- EDIT POST -------------
+  export const editPost = ({id, description}) => async (dispatch) => {
+      const response = await fetch(`/api/posts/${id}/edit`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({id, description})
+      })
+      if (response.ok) {
+          const updatedPost = await response.json();
+          dispatch(updatePost(updatedPost))
+          return updatedPost
+      }
+  }
 
 
 
@@ -118,6 +141,13 @@ const postReducer = (state = {}, action) => {
         case DELETE_POST: {
             newState = {...state}
             delete newState[action.postid]
+            return newState
+        }
+        case EDIT_POST: {
+            newState = {
+                ...state,
+                [action.payload.id]: action.payload.post
+            }
             return newState
         }
 

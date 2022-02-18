@@ -1,20 +1,22 @@
-import React from "react";
-import { createNewPost } from "../../store/posts";
+import {React, useState} from "react";
+import { createNewPost, getAllPosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import './PostForm.css';
 
-const PostForm = () => {
+const PostForm = ({ hideModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   const updatePhotoUrl = (e) => setPhotoUrl(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
 
   const sessionUser = useSelector((state) => state.session.user);
+  console.log(sessionUser)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,18 +27,22 @@ const PostForm = () => {
       description: description,
     };
 
-    let errors = [];
+    // let errors = [];
 
-    return dispatch(createNewPost(payload))
-      .catch(async (response) => {
-        const data = await response.json();
-        if (data.errors) setErrors(data.errors);
-      })
-      .then((response) => response && history.push("/feed"));
+    const new_post = await dispatch(createNewPost(payload))
+
+
+    if (new_post) {
+      dispatch(getAllPosts());
+      hideModal();
+      // return new_post
+    }
+
+
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="postForm" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Picture URL"

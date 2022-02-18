@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import PostFormModal from "../PostForm/PostModal";
 import "./NavBar.css";
+
 
 const NavBar = () => {
   return (
@@ -17,7 +19,9 @@ const NavBar = () => {
               {/* </li> */}
             </div>
 
+
             <div className="nav-right">
+                <PostFormModal />
               {/* <li> */}
                 <LogoutButton />
               {/* </li> */}

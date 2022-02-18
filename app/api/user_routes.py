@@ -24,6 +24,6 @@ def user(id):
 @user_routes.route('/<int:id>/posts')
 def users_posts(id):
     # return 'Is this thing on?'
-    posts = Post.query.filter(Post.user_id == 1).all()
+    posts = Post.query.filter(Post.user_id == id).all()
 
     return {'posts': [post.to_dict() for post in posts]}

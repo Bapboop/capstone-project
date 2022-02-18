@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { createNewPost, getAllPosts } from "../../store/posts";
+import { createNewPost, getAllPosts, getUsersPost } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./PostForm.css";
@@ -33,14 +33,14 @@ const PostForm = ({ hideModal }) => {
     const new_post = await dispatch(createNewPost(payload));
 
     if (new_post) {
-      dispatch(getAllPosts());
+      dispatch(getUsersPost(sessionUser.id));
       hideModal();
       // return new_post
     }
   };
 
   return (
-  
+
       <form className="postForm" onSubmit={handleSubmit}>
         <input
           type="text"

@@ -22,7 +22,8 @@ const Profile = () => {
         return Object.values(state.posts);
     });
 
-    // console.log(posts, '@@@@@@@@@@@@@@@@@@@@@')
+
+
 
     const handleDelete = (e) => {
       e.preventDefault();

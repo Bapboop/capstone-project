@@ -48,3 +48,14 @@ def new_post():
         return new_post.to_dict()
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# -------------------------- Delete a post: --------------------------------
+@post_routes.route('/<int:id>', methods=['DELETE'])
+def delete_post(id):
+    deletePost = Post.query.filter(Post.id == id).first()
+    print(deletePost)
+    db.session.delete(deletePost)
+    db.session.commit()
+
+    return {"POST": "DELETED"}

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUsersPost } from "../../store/posts";
+import { deletePost } from "../../store/posts";
 
 
 
@@ -13,14 +14,24 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(getUsersPost(userId))
-    }, [dispatch, userId])
+    }, [dispatch])
 
 
     const posts = useSelector((state) => {
         return Object.values(state.posts);
     });
 
-    console.log(posts, '@@@@@@@@@@@@@@@@@@@@@')
+    // console.log(posts, '@@@@@@@@@@@@@@@@@@@@@')
+
+    const handleDelete = (e) => {
+      e.preventDefault();
+      const postId = e.target.id
+      console.log(postId, 'Hey, is this working? postId')
+      dispatch(deletePost(postId))
+      dispatch(getUsersPost(userId))
+      // const deletedPost = dispatch(deletePost(posts.id))
+
+    }
 
     return (
         <>
@@ -29,6 +40,7 @@ const Profile = () => {
           <div key={post.id} className="profile-feed">
             <img src={post.photo_url} alt="" />
             <p> {post.description}</p>
+            <button id={post.id} className="delete-button" onClick={handleDelete}>Delete</button>
           </div>
         ))}
       </>

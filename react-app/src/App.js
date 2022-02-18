@@ -17,8 +17,9 @@ import PostForm from "./components/PostForm/PostForm";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const isUser = useSelector((state) => state.session.user);
+  console.log(isUser);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     (async () => {
@@ -33,6 +34,10 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* {isUser?
+          <NavBar />: null
+      } */}
+          <NavBar isUser={isUser} />
       <Switch>
         <Route path="/" exact={true}>
           <LoginPage />
@@ -43,7 +48,6 @@ function App() {
           <SignUpPage />
         </Route>
         <Route path="/feed" exact={true}>
-          <NavBar />
 
           <FeedView />
         </Route>
@@ -53,9 +57,9 @@ function App() {
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <Route path="/users/:userId" exact={true}>
           <Profile />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute>

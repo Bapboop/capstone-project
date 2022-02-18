@@ -2,6 +2,7 @@
 const GET_POSTS = 'posts/GET_POSTS'
 const CREATE_POST = 'posts/CREATE_POST'
 const GET_USERS_POSTS = 'posts/GET_USERS_POSTS'
+const DELETE_POST = 'posts/DELETE_POST'
 
 
 
@@ -26,6 +27,13 @@ const usersPosts = (payload) => {
     return {
         type: GET_USERS_POSTS,
         payload
+    }
+}
+
+const deleteAPost = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
     }
 }
 
@@ -68,6 +76,17 @@ export const getUsersPost = (userId) => async (dispatch) => {
 
 
 
+ // --------------- DELETE USERS POST -------------
+ export const deletePost = (postId) => async (dispatch) => {
+     const response = await fetch(`/api/posts/${postId}`, {
+         method: "DELETE",
+     })
+
+     if (response.ok) {
+         dispatch(deleteAPost(postId))
+        //  return 'Delete is working!'
+     }
+ }
 
 
 
@@ -86,12 +105,22 @@ const postReducer = (state = {}, action) => {
                 ...state,
             }
         }
+        case CREATE_POST: {
+            newState = { ...state, [action.post.id]: action.post}
+            return newState
+        }
         case GET_USERS_POSTS: {
             action.payload.posts.forEach((post) => {
                 newState[post.id] = post
             })
             return newState
         }
+        case DELETE_POST: {
+            newState = {...state}
+            delete newState[action.postid]
+            return newState
+        }
+
         default:
             return state;
     }

@@ -1,6 +1,7 @@
 //  ---------------- Action Types:  ----------------
 const GET_POSTS = 'posts/GET_POSTS'
 const CREATE_POST = 'posts/CREATE_POST'
+const GET_USERS_POSTS = 'posts/GET_USERS_POSTS'
 
 
 
@@ -20,6 +21,13 @@ const createPost = (payload) => {
     }
 }
 
+
+const usersPosts = (payload) => {
+    return {
+        type: GET_USERS_POSTS,
+        payload
+    }
+}
 
 //  ---------------- Thunks:  ----------------
 
@@ -47,6 +55,17 @@ export const createNewPost = (payload) => async (dispatch) => {
     }
 }
 
+// --------------- GET USERS POSTS -------------
+export const getUsersPost = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/posts`)
+
+    if (response.ok) {
+        const posts = await response.json();
+        console.log(posts, 'INSIDE THE USERS POST THUNK')
+        dispatch(usersPosts(posts))
+    }
+}
+
 
 
 
@@ -67,7 +86,12 @@ const postReducer = (state = {}, action) => {
                 ...state,
             }
         }
-
+        case GET_USERS_POSTS: {
+            action.payload.posts.forEach((post) => {
+                newState[post.id] = post
+            })
+            return newState
+        }
         default:
             return state;
     }

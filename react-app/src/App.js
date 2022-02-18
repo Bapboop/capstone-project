@@ -12,6 +12,8 @@ import User from "./components/User";
 import FeedView from "./components/FeedView/FeedView";
 import { authenticate } from "./store/session";
 
+import PostForm from "./components/PostForm/PostForm";
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -30,7 +32,6 @@ function App() {
 
   return (
     <BrowserRouter>
-          <NavBar loaded={loaded} />
       <Switch>
         <Route path="/" exact={true}>
           <LoginPage />
@@ -41,8 +42,12 @@ function App() {
           <SignUpPage />
         </Route>
         <Route path="/feed" exact={true}>
+          <NavBar />
 
           <FeedView />
+        </Route>
+        <Route path="/posts/new">
+          <PostForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />

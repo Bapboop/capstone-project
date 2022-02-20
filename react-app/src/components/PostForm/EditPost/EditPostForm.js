@@ -35,6 +35,7 @@ const EditPostForm = ({post}) => {
 
         const updatedPost = await dispatch(editPost(payload))
 
+
         if (updatedPost) {
             dispatch(getUsersPost(userId))
         }
@@ -43,8 +44,7 @@ const EditPostForm = ({post}) => {
 
     return (
         <>
-        {/* {JSON.stringify(post)} */}
-        {/* <h1> Hi from edit post form</h1> */}
+
         <form className='edit-form' onSubmit={handleSubmit}>
             <textarea
             placeholder={post?.description}

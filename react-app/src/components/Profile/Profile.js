@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getUsersPost } from "../../store/posts";
 import { deletePost } from "../../store/posts";
 import EditPostForm from "../PostForm/EditPost/EditPostForm";
@@ -9,6 +9,7 @@ import EditPostForm from "../PostForm/EditPost/EditPostForm";
 
 const Profile = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const { userId } = useParams();
     // alert(userId)
@@ -31,6 +32,7 @@ const Profile = () => {
       console.log(postId, 'Hey, is this working? postId')
       dispatch(deletePost(postId))
       dispatch(getUsersPost(userId))
+      history.push(`/users/${userId}`)
       // const deletedPost = dispatch(deletePost(posts.id))
 
     }

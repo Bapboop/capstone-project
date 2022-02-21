@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getUsersPost } from "../../store/posts";
 import { deletePost } from "../../store/posts";
 import EditPostForm from "../PostForm/EditPost/EditPostForm";
+import ProfileTop from "./ProfileTop";
 import './Profile.css'
 
 
@@ -38,7 +39,7 @@ const Profile = () => {
 
 
       const deletedPost = await dispatch(deletePost(postId))
-      console.log(deletedPost)
+      // console.log(deletedPost)
 
       if (!deletedPost) {
 
@@ -49,7 +50,13 @@ const Profile = () => {
 
     return (
         <>
-        <h1> TEST</h1>
+        {/* <h1> TEST</h1> */}
+
+        <div>
+        <ProfileTop />
+        </div>
+
+
         <div className='profile-posts'>
 
         {posts?.map((post) => (

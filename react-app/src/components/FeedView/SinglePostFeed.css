@@ -1,0 +1,47 @@
+.feed-post-container {
+
+    display: flex;
+    flex-direction: column;
+  max-width: 613.99px;
+  width: 613.99px;
+
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  border-radius: 3px;
+
+  max-height: 1000px;
+
+  margin: 16px auto;
+  border-radius: 3px;
+  background-color: white;
+
+
+}
+
+.feed-post-owner {
+  max-height: 70.92px;
+  height: 70.92px;
+
+  max-width: 613.99px;
+  width: 613.99px;
+
+}
+
+.feed-photo img {
+max-width: 613.99px;
+  width: 613.99px;
+  max-height: 767.47px;
+  object-fit: cover;
+
+}
+
+
+.feed-description {
+    /* height: 18px;
+    max-height: 18px; */
+}
+
+.feed-new-comment {
+    height: 39.99px;
+    max-height: 39.99px;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}

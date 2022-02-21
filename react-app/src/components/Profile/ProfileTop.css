@@ -1,0 +1,9 @@
+.profile-container {
+    display: grid;
+    padding-top: 100px;
+    grid-template-columns: 1fr 2fr;
+    margin: 0 auto 30px;
+    max-width: 935px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(var(--b38,219,219,219),1);
+}

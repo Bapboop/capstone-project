@@ -1,0 +1,14 @@
+.profile-posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 30px;
+    column-gap: 30px;
+    margin: 0 auto 30px;
+    max-width: 935px;
+}
+
+.profile-posts img {
+    width: 293px;
+    height: 293px;
+    object-fit: cover;
+}

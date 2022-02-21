@@ -5,6 +5,7 @@ import PostFormModal from "../PostForm/PostModal";
 import "./NavBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../store/session';
+import ProfileButton from "./ProfileButton";
 
 
 const NavBar = ({ isUser }) => {
@@ -30,18 +31,30 @@ const NavBar = ({ isUser }) => {
             {/* <ul> */}
             {/* <li> */}
             <NavLink to="/feed" exact={true} activeClassName="active">
-              Logo
+
+
+              <img className='nav-img' src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645349382/picture_compress_1_k66mdi.png" />
             </NavLink>
             {/* </li> */}
           </div>
 
           <div className="nav-right">
-            <PostFormModal />
+          <div className="home">
+          <NavLink to="/feed" exact={true} activeClassName="active">
+          <i class="fa-solid fa-house-user"></i>
+          </NavLink>
+          </div>
+
+            <PostFormModal  />
             {/* <li> */}
             {/* <LogoutButton /> */}
-            <button onClick={onLogout}>Logout</button>
+            {/* <i  class="fa-regular fa-square-plus"></i> */}
+            {/* <button onClick={onLogout}>Logout</button> */}
             {/* </li> */}
+            <ProfileButton user={user} />
           </div>
+
+
           {/* </ul> */}
         </div>
       </div>

@@ -26,7 +26,7 @@ const PostFeed = ({post}) => {
             </div>
 
             <div className='feed-comments'>
-                Comments Go Here
+                View all # comments
             </div>
             <div className='feed-new-comment'>
                 Add a comment...

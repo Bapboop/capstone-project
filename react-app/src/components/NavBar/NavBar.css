@@ -78,7 +78,7 @@ nav {
 
 
 .profile-dropdown {
-  font: inherit;
+  font-family: 'Lucida grande', tahoma, verdana, arial, sans-serif;
   position: absolute;
   margin-top: 150px;
   display: flex;
@@ -93,6 +93,7 @@ nav {
   height: 100%;
   box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
   list-style: none;
+  background-color: #ffffff;
 
 }
 

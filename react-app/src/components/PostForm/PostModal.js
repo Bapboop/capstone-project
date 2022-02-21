@@ -11,7 +11,10 @@ function PostFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>POST</button>
+
+      <p  className="post-modal-click" onClick={() => setShowModal(true)}>
+      <i  class="fa-regular fa-square-plus" />
+      </p>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PostForm  hideModal={hideModal} />

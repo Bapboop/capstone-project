@@ -35,6 +35,7 @@ const PostForm = ({ hideModal }) => {
     if (new_post) {
       dispatch(getUsersPost(sessionUser.id));
       hideModal();
+      history.push(`/users/${sessionUser.id}`)
       // return new_post
     }
   };
@@ -56,7 +57,7 @@ const PostForm = ({ hideModal }) => {
           onChange={updateDescription}
         />
 
-        <button type="submit">Submit</button>
+        <button className="post-butt" type="submit">Submit</button>
       </form>
 
 

@@ -14,27 +14,34 @@ const Profile = () => {
     const { userId } = useParams();
     // alert(userId)
 
+
+
+    const posts = useSelector((state) => {
+      return Object.values(state.posts);
+    });
+
     useEffect(() => {
         dispatch(getUsersPost(userId))
     }, [dispatch])
 
 
-    const posts = useSelector((state) => {
-        return Object.values(state.posts);
-    });
 
-
-
-
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
       e.preventDefault();
       const postId = e.target.id
-      console.log(postId, 'Hey, is this working? postId')
-      dispatch(deletePost(postId))
-      dispatch(getUsersPost(userId))
-      history.push(`/users/${userId}`)
-      // const deletedPost = dispatch(deletePost(posts.id))
+      // console.log(postId, 'Hey, is this working? postId')
+      // // dispatch(deletePost(postId))
 
+
+
+      const deletedPost = await dispatch(deletePost(postId))
+      console.log(deletedPost)
+
+      if (!deletedPost) {
+
+        dispatch(getUsersPost(userId))
+        // history.push(`/users/${userId}`)
+      }
     }
 
     return (

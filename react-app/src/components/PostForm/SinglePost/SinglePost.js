@@ -20,11 +20,11 @@ const SinglePost = ({post}) => {
         <div className="single-post-info">
             <div className="owner-info">
             Owner Pic Username
-            </div>
-            <div className="post-description">
         <p>
             {post?.description}
         </p>
+            </div>
+            <div className="post-description">
 
             </div>
 

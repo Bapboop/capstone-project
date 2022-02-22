@@ -30,7 +30,7 @@ const EditPostForm = ({post}) => {
             id: post.id,
             description
         }
-        console.log(payload, 'this is the payload############')
+        // console.log(payload, 'this is the payload############')
 
 
         const updatedPost = await dispatch(editPost(payload))

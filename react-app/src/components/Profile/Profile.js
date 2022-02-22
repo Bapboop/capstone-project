@@ -19,16 +19,16 @@ const Profile = () => {
     // alert(userId)
 
 
+    
+        useEffect(() => {
+            dispatch(getUsersPost(userId))
+        }, [dispatch])
 
     const posts = useSelector((state) => {
       return Object.values(state.posts);
     });
 
-    console.log(posts, '$#@$#@$@#$#@$#@@')
-
-    useEffect(() => {
-        dispatch(getUsersPost(userId))
-    }, [dispatch])
+    // console.log(posts, '$#@$#@$@#$#@$#@@')
 
 
 
@@ -63,11 +63,13 @@ const Profile = () => {
 
         {posts?.map((post) => (
           <div key={post?.id} className="profile-feed">
+            <ASinglePostModal post={post}>
             <img src={post?.photo_url} alt="" />
-            <p> {post?.description}</p>
-            <button id={post?.id} className="delete-button" onClick={handleDelete}>Delete</button>
-            <EditPostForm post={post}/>
-            <ASinglePostModal post={post}/>
+            {/* <p> {post?.description}</p> */}
+            {/* <button id={post?.id} className="delete-button" onClick={handleDelete}>Delete</button> */}
+            {/* <EditPostForm post={post}/> */}
+
+            </ASinglePostModal>
           </div>
         ))}
         </div>

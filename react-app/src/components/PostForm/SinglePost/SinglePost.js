@@ -1,5 +1,11 @@
 import React from "react"
+import ViewComments from "../../Comments/ViewComments"
 import './SinglePost.css'
+import EditPostForm from "../EditPost/EditPostForm"
+import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { deletePost } from "../../../store/posts"
+import { getUsersPost } from "../../../store/posts"
 
 
 
@@ -7,6 +13,27 @@ import './SinglePost.css'
 
 
 const SinglePost = ({post}) => {
+    const dispatch = useDispatch();
+
+    const { userId } = useParams();
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        const postId = e.target.id
+        // console.log(postId, 'Hey, is this working? postId')
+        // // dispatch(deletePost(postId))
+
+
+
+        const deletedPost = await dispatch(deletePost(postId))
+        // console.log(deletedPost)
+
+        if (!deletedPost) {
+
+          dispatch(getUsersPost(userId))
+          // history.push(`/users/${userId}`)
+        }
+      }
 
     console.log(post, 'is this working???????????')
     return (
@@ -23,6 +50,12 @@ const SinglePost = ({post}) => {
         <p>
             {post?.description}
         </p>
+        <div>
+
+        <EditPostForm post={post}/>
+        <button id={post?.id} className="delete-button" onClick={handleDelete}>Delete</button>
+        </div>
+
             </div>
             <div className="post-description">
 
@@ -30,7 +63,9 @@ const SinglePost = ({post}) => {
 
             <div className="post-comments">
                 Comments
+                <ViewComments post={post} />
             </div>
+
             <div className="add-comments">
                 Add a comment...
             </div>

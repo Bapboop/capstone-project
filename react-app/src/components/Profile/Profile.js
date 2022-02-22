@@ -6,6 +6,8 @@ import { deletePost } from "../../store/posts";
 import EditPostForm from "../PostForm/EditPost/EditPostForm";
 import ProfileTop from "./ProfileTop";
 import './Profile.css'
+import { SinglePostModal } from "../../context/Modal";
+import ASinglePostModal from "../PostForm/SinglePost/SinglePostModal";
 
 
 
@@ -65,6 +67,7 @@ const Profile = () => {
             <p> {post?.description}</p>
             <button id={post?.id} className="delete-button" onClick={handleDelete}>Delete</button>
             <EditPostForm post={post}/>
+            <ASinglePostModal post={post}/>
           </div>
         ))}
         </div>

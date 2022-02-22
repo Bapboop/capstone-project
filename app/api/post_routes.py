@@ -33,8 +33,6 @@ def test_posts(id):
 def new_post():
     # return 'hi from new post route!'
     form = PostForm()
-
-
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():

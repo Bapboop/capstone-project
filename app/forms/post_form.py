@@ -7,7 +7,7 @@ from app.models import Post
 
 
 class PostForm(FlaskForm):
-    photo_url = StringField('photo_url')
+    photo_url = StringField('photo_url', validators=[DataRequired()])
     description = StringField('description')
 
 

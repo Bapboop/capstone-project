@@ -1,4 +1,5 @@
 import React from "react"
+import ViewComments from "../../Comments/ViewComments"
 import './SinglePost.css'
 
 
@@ -30,6 +31,7 @@ const SinglePost = ({post}) => {
 
             <div className="post-comments">
                 Comments
+                <ViewComments post={post} />
             </div>
             <div className="add-comments">
                 Add a comment...

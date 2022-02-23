@@ -19,7 +19,7 @@ def get_all_comments(post_id):
 
 # Post a comment on an associated post:
 @comment_routes.route('/<int:post_id>/new', methods=["POST"])
-@login_required
+# @login_required
 def new_comment(post_id):
     # return 'hi from comments route'
     form = CommentForm()
@@ -27,7 +27,7 @@ def new_comment(post_id):
 
     if form.validate_on_submit():
         data = form.data
-        # print(data, 'DATA DATA DATA?')
+        print(data, 'DATA DATA DATA?')
         new_comment = Comment(
             comment = data["comment"],
             user_id = current_user.id,

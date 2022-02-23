@@ -1,6 +1,6 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.forms.comment_form import CommentForm
+from app.forms.comment_form import CommentForm, EditCommentForm
 from app.models import Comment, db
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -46,18 +46,25 @@ def new_comment(post_id):
 @comment_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_comment(id):
-    form = CommentForm()
-    comment = Comment.query.get(id)
+    req = request.json
+    print(req, 'is this working????? comemnts route')
+    print(id, 'is this working?')
+    # form = EditCommentForm()
+    comment = Comment.query.filter_by(id=id).first()
+    print(comment)
+    comment.comment = req
+    db.session.commit()
+    return comment.to_dict()
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+    # form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        data = form.data
-        # print(data, 'DATA DATA DATA!')
-        comment.comment = data["comment"]
-        db.session.commit()
-        return comment.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    # if form.validate_on_submit():
+    #     data = form.data
+    #     print(data, 'DATA DATA DATA!')
+    #     comment.comment = form.data["comment"]
+    #     db.session.commit()
+        # return comment.to_dict()
+    # return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 

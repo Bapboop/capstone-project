@@ -79,17 +79,22 @@ export const deleteAComment = (commentId) => async (dispatch) => {
 
 
  // --------------- EDIT COMMENT -------------
- export const editComment = ({id, comment}) => async (dispatch) => {
-     console.log(id, 'edit comment thunk')
+ export const editComment = (id, comment) => async (dispatch) => {
+
+    console.log(id)
+     console.log(comment, 'edit comment thunk')
+    //  console.log(comment, 'comment inside edit thunk')
+    //  console.log(payload.id, 'edit comment thunk, test')
+    //  const id = payload.id
      const response = await fetch(`/api/comments/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({id, comment})
+        body: JSON.stringify(comment, id)
      })
      if (response.ok) {
          const updatedComment = await response.json();
          dispatch(updateComment(updatedComment))
-         return updatedComment
+         return;
      }
  }
 

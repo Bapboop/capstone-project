@@ -30,6 +30,7 @@ const AddComment = ({ post }) => {
         // console.log(payload, 'payload?????????????????????')
         dispatch(createNewComment(payload))
         dispatch(getAllComments(postId))
+        setComment('')
 
         // if (new_comment) {
         // }

@@ -10,7 +10,7 @@ const EditComment = ({comment, post}) => {
     const postId = post?.id
     const userId = user?.id
 
-    const [commentValue, setCommentValue] = useState(comment?.comment)
+    const [commentValue, setCommentValue] = useState(comment.comment)
 
     const updateComment = (e) => setCommentValue(e.target.value);
 
@@ -18,34 +18,37 @@ const EditComment = ({comment, post}) => {
         e.preventDefault();
 
         const payload = {
+            commentValue,
             id: comment.id,
-            comment: commentValue
+            // post_id: postId
         }
 
-        // const id = comment.id
-        // console.log(payload, 'update comment payload??')
-        // // const updatedComment = await
-        //  dispatch(editComment(id, comment))
+        const id = comment.id
+        // console.log(id)
+        // console.log(payload.commentValue, 'update comment payload??')
+        // const updatedComment = await  dispatch(editComment(id, commentValue))
+        // console.log(comment.comment, 'test')
+        dispatch(editComment(id, payload.commentValue))
 
-        // dispatch(getAllComments(postId))
-        // // if (updatedComment) {
+        // if (updatedComment) {
+        dispatch(getAllComments(postId))
         // }
     }
 
 
     return (
         <>
-        {/* <form className="edit-comment-form" onSubmit={handleUpdate}>
+        <form className="edit-comment-form" onSubmit={handleUpdate}>
 
                <input
                type="text"
-               placeholder="Add a comment..."
+            //    placeholder='Edit your comment...'
                required
                value={commentValue}
                onChange={updateComment}
                />
-               </form> */}
-               {/* <button >Save changes</button> */}
+               <button >Save changes</button>
+               </form>
         </>
     )
 }

@@ -38,6 +38,7 @@ const EditPostForm = ({post}) => {
 
         if (updatedPost) {
             dispatch(getUsersPost(userId))
+
         }
 
     }

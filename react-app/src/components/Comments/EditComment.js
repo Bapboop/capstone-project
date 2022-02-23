@@ -1,6 +1,7 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import { editComment, getAllComments } from "../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
+
 
 
 const EditComment = ({comment, post}) => {
@@ -10,7 +11,8 @@ const EditComment = ({comment, post}) => {
     const postId = post?.id
     const userId = user?.id
 
-    const [commentValue, setCommentValue] = useState(comment.comment)
+    const [commentValue, setCommentValue] = useState(comment?.comment)
+
 
     const updateComment = (e) => setCommentValue(e.target.value);
 
@@ -26,13 +28,13 @@ const EditComment = ({comment, post}) => {
         const id = comment.id
         // console.log(id)
         // console.log(payload.commentValue, 'update comment payload??')
-        // const updatedComment = await  dispatch(editComment(id, commentValue))
+        const updatedComment = await  dispatch(editComment(id, payload.commentValue))
         // console.log(comment.comment, 'test')
-        dispatch(editComment(id, payload.commentValue))
+        // dispatch(editComment(id, payload.commentValue))
 
-        // if (updatedComment) {
+
         dispatch(getAllComments(postId))
-        // }
+
     }
 
 

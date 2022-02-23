@@ -46,25 +46,27 @@ def new_comment(post_id):
 @comment_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_comment(id):
-    req = request.json
-    print(req, 'is this working????? comemnts route')
-    print(id, 'is this working?')
-    # form = EditCommentForm()
-    comment = Comment.query.filter_by(id=id).first()
-    print(comment)
-    comment.comment = req
-    db.session.commit()
-    return comment.to_dict()
+    # req = request.json
+    # # print(req, 'is this working????? comemnts route')
+    # # print(id, 'is this working?')
+    # comment = Comment.query.filter_by(id=id).first()
+    # # print(comment)
+    # comment.comment = req
+    # db.session.commit()
+    # return comment.to_dict()
 
-    # form['csrf_token'].data = request.cookies['csrf_token']
+    form = EditCommentForm()
 
-    # if form.validate_on_submit():
-    #     data = form.data
-    #     print(data, 'DATA DATA DATA!')
-    #     comment.comment = form.data["comment"]
-    #     db.session.commit()
-        # return comment.to_dict()
-    # return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    comment = Comment.query.get(id)
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+        print(data, 'DATA DATA DATA!')
+        comment.comment = form.data["comment"]
+        db.session.commit()
+        return comment.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 

@@ -11,6 +11,7 @@ const ViewComments = ({ post }) => {
     // console.log(post)
     // Access to: post.description, post.id, post.photo_url, post.user_id
 
+    
     useEffect(() => {
         dispatch(getAllComments(postId))
     }, [dispatch])

@@ -15,7 +15,6 @@ const getComments = (comments) => {
     }
 }
 
-
 const createComment = (comment) => {
     return {
         type: CREATE_COMMENT,
@@ -89,7 +88,7 @@ export const deleteAComment = (commentId) => async (dispatch) => {
      const response = await fetch(`/api/comments/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(comment, id)
+        body: JSON.stringify({comment, id})
      })
      if (response.ok) {
          const updatedComment = await response.json();

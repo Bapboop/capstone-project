@@ -17,6 +17,7 @@ const SinglePost = ({post}) => {
 
     const { userId } = useParams();
 
+
     const handleDelete = async (e) => {
         e.preventDefault();
         const postId = e.target.id

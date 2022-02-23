@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { deletePost } from "../../../store/posts"
 import { getUsersPost } from "../../../store/posts"
-
+import AddComment from "../../Comments/CreateComment"
 
 
 
@@ -35,7 +35,7 @@ const SinglePost = ({post}) => {
         }
       }
 
-    console.log(post, 'is this working???????????')
+    // console.log(post, 'is this working???????????')
     return (
         <>
         <div className="single-post">
@@ -68,6 +68,7 @@ const SinglePost = ({post}) => {
 
             <div className="add-comments">
                 Add a comment...
+                <AddComment post={post} />
             </div>
 
         </div>

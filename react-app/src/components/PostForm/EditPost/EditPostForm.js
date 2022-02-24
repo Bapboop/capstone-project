@@ -1,65 +1,51 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import { editPost, getUsersPost } from "../../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 
+const EditPostForm = ({ post }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  // console.log(post.user_id, 'post post post post')
+  const postUserId = post?.user_id;
+  // console.log(user?.id, 'is this thing on?')
+  const userId = user?.id;
 
+  // console.log(setShowEdit)
 
+  const [description, setDescription] = useState(post?.description);
 
-const EditPostForm = ({post}) => {
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
-    // console.log(post.user_id, 'post post post post')
-    const postUserId = post?.user_id
-    // console.log(user?.id, 'is this thing on?')
-    const userId = user?.id
+  const updateDescription = (e) => setDescription(e.target.value);
 
-    // console.log(setShowEdit)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const [description, setDescription] = useState(post?.description)
+    const payload = {
+      id: post.id,
+      description,
+    };
 
-    // post
-    //  {"description":"Wow.","id":1,"photo_url":"https://res.cloudinary.com/dd9qejhag/image/upload/v1645076095/Gardengram/garden4_zcme0j.png","user_id":1}
-    /*---------------------
-    | So I have access to: post.description, post.id, post.photo_url, post.user_id
-    -------------------*/
+    const updatedPost = await dispatch(editPost(payload));
 
-    const updateDescription = (e) => setDescription(e.target.value);
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const payload = {
-            id: post.id,
-            description
-
-        }
-
-        const updatedPost = await dispatch(editPost(payload))
-
-
-        if (updatedPost) {
-            dispatch(getUsersPost(postUserId))
-        }
-
+    if (updatedPost) {
+      dispatch(getUsersPost(postUserId));
     }
+  };
 
-    return (
-        <>
+  return (
+    <>
+      {/* <form className="edit-form"> */}
+        <textarea
+          placeholder={post?.description}
+          type="text"
+          value={description}
+          onChange={updateDescription}
+        />
 
-        <form className='edit-form' onSubmit={handleSubmit}>
-            <textarea
-            placeholder={post?.description}
-            type="text"
-            value={description}
-            onChange={updateDescription}
-            />
+      {/* </form> */}
 
-            <button >Save changes</button>
-        </form>
-        </>
-    )
-}
-
+        <button onClick={handleSubmit}>Save changes</button>
+    </>
+  );
+};
 
 export default EditPostForm;

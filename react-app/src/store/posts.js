@@ -4,6 +4,7 @@ const CREATE_POST = 'posts/CREATE_POST'
 const GET_USERS_POSTS = 'posts/GET_USERS_POSTS'
 const DELETE_POST = 'posts/DELETE_POST'
 const EDIT_POST = '/posts/EDIT_POST'
+const EDIT_POST_TWO = '/posts/EDIT_POST_TWO'
 
 
 
@@ -41,6 +42,13 @@ const deleteAPost = (postId) => {
 const updatePost = (payload) => {
     return {
         type: EDIT_POST,
+        payload
+    }
+}
+
+const updatePostTwo = (payload) => {
+    return {
+        type: EDIT_POST_TWO,
         payload
     }
 }
@@ -107,12 +115,25 @@ export const getUsersPost = (userId) => async (dispatch) => {
       if (response.ok) {
           const updatedPost = await response.json();
           dispatch(updatePost(updatedPost))
+
           return updatedPost
       }
   }
 
 
+  export const editPostTwo = ({id, description}) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${id}/edit`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({id, description})
+    })
+    if (response.ok) {
+        const updatedPost = await response.json();
+        dispatch(updatePostTwo(updatedPost))
 
+        return updatedPost
+    }
+}
 
 //  ---------------- Reducer:  ----------------
 const postReducer = (state = {}, action) => {
@@ -144,11 +165,7 @@ const postReducer = (state = {}, action) => {
             return newState
         }
         case EDIT_POST: {
-            newState = {
-                ...state,
-                [action.payload.id]: action.payload.post
-            }
-            return newState
+            return
         }
 
         default:

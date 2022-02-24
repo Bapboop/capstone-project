@@ -6,13 +6,18 @@ import PostFeed from "./SinglePostFeed";
 const FeedView = () => {
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
+
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const posts = useSelector((state) => {
     return Object.values(state.posts);
   });
+
+  
   return (
     <>
     <div className='feed-gap'>

@@ -20,7 +20,7 @@ const ViewComments = ({ post }) => {
   const comments = useSelector((state) => {
     return Object.values(state.comments);
   });
-  // console.log(state, also test tes test)
+  console.log(comments, 'whats available?')
 
   // Temp delete placeholder:
   const handleDelete = async (e) => {
@@ -39,7 +39,7 @@ const ViewComments = ({ post }) => {
     <>
       {comments?.map((comment) => (
         <>
-          <p> Username Placholder: {comment?.comment}</p>
+          <p> {comment?.username}: {comment?.comment}</p>
           <div>
             <EditComment comment={comment} post={post} />
             {comment?.user_id === userId && (

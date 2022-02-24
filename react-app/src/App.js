@@ -54,15 +54,21 @@ function App() {
         <Route path="/posts/new">
           <PostForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
+        {/* <ProtectedRoute path="/users" exact={true}>
           <UsersList />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path="/users/:userId" exact={true}>
           <Profile />
         </Route>
-        <ProtectedRoute path="/" exact={true}>
+        <Route>
+          <div className="no-page">
+
+          <h1> You're lost, there's nothing here!</h1>
+          </div>
+        </Route>
+        {/* <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

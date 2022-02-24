@@ -51,7 +51,7 @@ const PostForm = ({ hideModal }) => {
           onChange={updatePhotoUrl}
         />
         <textarea
-          placeholder="Description"
+          placeholder="Description (optional)"
           required
           value={description}
           onChange={updateDescription}

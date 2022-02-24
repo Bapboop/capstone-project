@@ -1,10 +1,10 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import ViewComments from "../../Comments/ViewComments";
 import "./SinglePost.css";
 import EditPostForm from "../EditPost/EditPostForm";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { alertPost, deletePost } from "../../../store/posts";
+import { alertPost, deletePost, getAllPosts } from "../../../store/posts";
 import { getUsersPost } from "../../../store/posts";
 import AddComment from "../../Comments/CreateComment";
 import { editPost } from "../../../store/posts";
@@ -12,9 +12,8 @@ import { editPost } from "../../../store/posts";
 const SinglePost = ({ post }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  // console.log(user.id, 'this is the user!!')
   const currUser = user?.id;
-  // console.log(currUser, 'this is the curr user')
+
   const [currPost, setCurrPost] = useState(post)
 
   const [showEdit, setShowEdit] = useState(false);
@@ -23,6 +22,8 @@ const SinglePost = ({ post }) => {
   const updateDescription = (e) => setDescription(e.target.value);
 
   const { userId } = useParams();
+
+
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -33,9 +34,17 @@ const SinglePost = ({ post }) => {
     const deletedPost = await dispatch(deletePost(postId));
     // console.log(deletedPost)
 
-    if (!deletedPost) {
-      dispatch(getUsersPost(userId));
-      // history.push(`/users/${userId}`)
+
+    // if (!deletedPost) {
+    //   dispatch(getUsersPost(userId));
+    //   // history.push(`/users/${userId}`)
+    // }
+
+    if (!userId) {
+      dispatch(getAllPosts())
+    } else {
+        dispatch(getUsersPost(post?.user_id));
+        // dispatch(getAllPosts())
     }
   };
 
@@ -61,9 +70,13 @@ const SinglePost = ({ post }) => {
 
     const updatedPost = await dispatch(editPost(payload));
     setCurrPost(updatedPost)
+    setShowEdit(false)
 
-    if (updatedPost) {
-      dispatch(getUsersPost(post?.user_id));
+    if (!userId) {
+      dispatch(getAllPosts())
+    } else {
+        dispatch(getUsersPost(post?.user_id));
+        // dispatch(getAllPosts())
     }
 
   };
@@ -77,7 +90,12 @@ const SinglePost = ({ post }) => {
 
         <div className="single-post-info">
           <div className="owner-info">
-            Owner Pic Username
+
+            {/* Owner Pic Username */}
+            <span className="username">
+            {post?.username}
+
+            </span>
             {!showEdit && (
               <>
                 <p>{currPost?.description}</p>

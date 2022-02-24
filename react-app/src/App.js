@@ -18,7 +18,7 @@ import PostForm from "./components/PostForm/PostForm";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const isUser = useSelector((state) => state.session.user);
-  console.log(isUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

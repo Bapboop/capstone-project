@@ -11,10 +11,25 @@ post_routes = Blueprint('posts', __name__)
 #Gets all posts
 @post_routes.route('/')
 def feed_posts():
-    # return jsonify('hi') # Works
+    posts = list()
 
-    posts = Post.query.all()
-    return{'posts': [post.to_dict() for post in posts]}
+    for u, p in db.session.query(User, Post).filter(User.id == Post.user_id).all():
+
+        posts.append({
+                "id": p.id,
+                "photo_url": p.photo_url,
+                "description": p.description,
+                "user_id": p.user_id,
+                "username": u.username,
+        })
+
+    return {'posts': posts}
+
+
+
+
+    # posts = Post.query.all()
+    # return{'posts': [post.to_dict() for post in posts]}
 
 
 
@@ -22,8 +37,26 @@ def feed_posts():
 # Gets a post by id
 @post_routes.route('/<int:id>')
 def test_posts(id):
-    posts = Post.query.get(id)
-    return {'posts': posts.to_dict()}
+
+
+    posts = list()
+
+    for u, p in db.session.query(User, Post).filter(User.id == Post.user_id).all():
+                                            # .filter(id == Post.id).all():
+
+        posts.append({
+                "id": p.id,
+                "photo_url": p.photo_url,
+                "description": p.description,
+                "user_id": p.user_id,
+                "username": u.username,
+        })
+
+    # print(posts)
+    return {'posts': posts}
+
+    # posts = Post.query.get(id)
+    # return {'posts': posts.to_dict()}
 
 
 
@@ -52,7 +85,7 @@ def new_post():
 @post_routes.route('/<int:id>', methods=['DELETE'])
 def delete_post(id):
     deletePost = Post.query.filter(Post.id == id).first()
-    print(deletePost)
+    # print(deletePost)
     db.session.delete(deletePost)
     db.session.commit()
 

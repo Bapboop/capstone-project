@@ -85,7 +85,6 @@ export const getUsersPost = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const posts = await response.json();
-        // console.log(posts, 'INSIDE THE USERS POST THUNK')
         dispatch(usersPosts(posts))
     }
 }
@@ -165,7 +164,7 @@ const postReducer = (state = {}, action) => {
             return newState
         }
         case EDIT_POST: {
-            return
+
         }
 
         default:

@@ -28,3 +28,8 @@
     /* temporary: just to display: */
     margin-bottom: 100px;
 }
+
+
+.username {
+    font-weight: bold;
+}

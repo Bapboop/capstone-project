@@ -15,7 +15,10 @@ const PostFeed = ({post}) => {
 
         <div className='feed-post-container'>
             <div className='feed-post-owner'>
-                Post Username Here
+                <span className="username">
+                    {post?.username}
+
+                    </span>
             </div>
 
             <div className='feed-photo'>
@@ -27,7 +30,7 @@ const PostFeed = ({post}) => {
                 Likes
             </div> */}
             <div className='feed-description'>
-                <p>Post Owner Description: {post?.description}</p>
+                <p> <span className="username"> {post?.username}</span>: {post?.description}</p>
             </div>
 
             {/* <div className='feed-comments'>

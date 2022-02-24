@@ -44,7 +44,7 @@ export const getAllComments = (postId) => async (dispatch) => {
 
     if (response.ok) {
         const comments = await response.json();
-        console.log(comments, 'COMMENTS INSIDE OF THUNK')
+
         dispatch(getComments(comments))
     }
 }
@@ -79,12 +79,6 @@ export const deleteAComment = (commentId) => async (dispatch) => {
 
  // --------------- EDIT COMMENT -------------
  export const editComment = (id, comment) => async (dispatch) => {
-
-    console.log(id)
-     console.log(comment, 'edit comment thunk')
-    //  console.log(comment, 'comment inside edit thunk')
-    //  console.log(payload.id, 'edit comment thunk, test')
-    //  const id = payload.id
      const response = await fetch(`/api/comments/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

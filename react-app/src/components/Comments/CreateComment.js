@@ -11,7 +11,7 @@ const AddComment = ({ post }) => {
   const updateComment = (e) => setComment(e.target.value);
 
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser.id, "session user????");
+
 
   const handleSubmit = async (e) => {
     // console.log('INSIDE OF HANDLE SUBMIT CREATE COMMENT')

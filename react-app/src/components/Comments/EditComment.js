@@ -22,13 +22,10 @@ const EditComment = ({ comment, post }) => {
     };
 
     const id = comment.id;
-    // console.log(id)
-    // console.log(payload.commentValue, 'update comment payload??')
+
     const updatedComment = await dispatch(
       editComment(id, payload.commentValue)
     );
-    // console.log(comment.comment, 'test')
-    // dispatch(editComment(id, payload.commentValue))
 
     dispatch(getAllComments(postId));
   };

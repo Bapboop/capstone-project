@@ -6,16 +6,22 @@ import PostFeed from "./SinglePostFeed";
 const FeedView = () => {
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
+
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const posts = useSelector((state) => {
     return Object.values(state.posts);
   });
+
+  
   return (
     <>
-      <h1> TEST</h1>
+    <div className='feed-gap'>
+        {/* <h1> TEST</h1> */}
       {posts?.map((post) => (
         <>
           <PostFeed post={post} />
@@ -25,6 +31,7 @@ const FeedView = () => {
         {/* </div> */}
         </>
       ))}
+      </div>
     </>
   );
 };

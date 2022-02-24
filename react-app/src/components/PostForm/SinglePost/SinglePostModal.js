@@ -13,13 +13,13 @@ function ASinglePostModal({post}) {
 
     return (
         <>
-         <p  className="single-post-modal-click" onClick={() => setShowModal(true)}>
+         <p  className="single-post-modal-click" onClick={() => {setShowModal(true)}}>
       {/* <i  class="fa-regular fa-square-plus" /> */}
       <img src={post?.photo_url} />
       </p>
              {showModal && (
                  <SinglePostModal onClose={() => setShowModal(false)}>
-                    <SinglePost post={post} hidModal={hideModal}>
+                    <SinglePost post={post} >
                     </SinglePost>
                  </SinglePostModal>
              )}

@@ -1,7 +1,8 @@
+from tkinter import N
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.forms.comment_form import CommentForm, EditCommentForm
-from app.models import Comment, db
+from app.models import Comment, db, User
 from app.api.auth_routes import validation_errors_to_error_messages
 
 
@@ -12,9 +13,22 @@ comment_routes = Blueprint('comments', __name__)
 #Gets all comments associated with a post id.
 @comment_routes.route('/<int:post_id>')
 def get_all_comments(post_id):
-    comments = Comment.query.filter(Comment.post_id == post_id).all()
-    # print(comments, '##########################')
-    return {'comments': [comment.to_dict() for comment in comments]}
+    comments = list()
+
+    for u, c in db.session.query(User, Comment).filter(User.id == Comment.user_id)\
+                                                .filter(Comment.post_id == post_id).all():
+        comments.append({
+            'id': c.id,
+            'comment': c.comment,
+            'user_id': c.user_id,
+            'post_id': c.post_id,
+            'username': u.username,
+        })
+
+
+    return {'comments': comments}
+
+
 
 
 # Post a comment on an associated post:
@@ -31,7 +45,7 @@ def new_comment(post_id):
         new_comment = Comment(
             comment = data["comment"],
             user_id = current_user.id,
-            post_id = post_id
+            post_id = post_id,
         )
 
         db.session.add(new_comment)

@@ -49,7 +49,7 @@ const LoginForm = () => {
           </div>
           <div>
             <div className="login-header">
-              <img src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645347043/ok-godo_lkgfaa.svg" />
+              <img src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645347043/ok-godo_lkgfaa.svg" alt="logo" />
             </div>
             <div className="email-signin">
 

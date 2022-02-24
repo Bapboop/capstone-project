@@ -62,7 +62,7 @@ def test_posts(id):
 
 # -------------------------- Create a post: --------------------------------
 @post_routes.route('/new', methods=['POST'])
-# @login_required
+@login_required
 def new_post():
     # return 'hi from new post route!'
     form = PostForm()

@@ -57,7 +57,7 @@ const updatePostTwo = (payload) => {
 
 // --------------- GET ALL POSTS --------------
 export const getAllPosts = () => async (dispatch) => {
-    const response = await fetch('/api/posts')
+    const response = await fetch('/api/posts/')
 
     if (response.ok) {
         const allPosts = await response.json();

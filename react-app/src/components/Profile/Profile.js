@@ -19,7 +19,7 @@ const Profile = () => {
     // alert(userId)
 
 
-    
+
         useEffect(() => {
             dispatch(getUsersPost(userId))
         }, [dispatch])
@@ -46,7 +46,7 @@ const Profile = () => {
       if (!deletedPost) {
 
         dispatch(getUsersPost(userId))
-        // history.push(`/users/${userId}`)
+        history.push(`/users/${userId}`)
       }
     }
 

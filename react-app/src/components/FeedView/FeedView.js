@@ -15,7 +15,8 @@ const FeedView = () => {
   });
   return (
     <>
-      <h1> TEST</h1>
+    <div className='feed-gap'>
+        {/* <h1> TEST</h1> */}
       {posts?.map((post) => (
         <>
           <PostFeed post={post} />
@@ -25,6 +26,7 @@ const FeedView = () => {
         {/* </div> */}
         </>
       ))}
+      </div>
     </>
   );
 };

@@ -1,59 +1,56 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { editComment, getAllComments } from "../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
 
+const EditComment = ({ comment, post }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  // console.log(post, 'post inside of edit comment?')
+  const postId = post?.id;
+  const userId = user?.id;
 
+  const [commentValue, setCommentValue] = useState(comment?.comment);
 
-const EditComment = ({comment, post}) => {
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
-    // console.log(post, 'post inside of edit comment?')
-    const postId = post?.id
-    const userId = user?.id
+  const updateComment = (e) => setCommentValue(e.target.value);
 
-    const [commentValue, setCommentValue] = useState(comment?.comment)
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
+    const payload = {
+      commentValue,
+      id: comment.id,
+    };
 
-    const updateComment = (e) => setCommentValue(e.target.value);
+    const id = comment.id;
+    // console.log(id)
+    // console.log(payload.commentValue, 'update comment payload??')
+    const updatedComment = await dispatch(
+      editComment(id, payload.commentValue)
+    );
+    // console.log(comment.comment, 'test')
+    // dispatch(editComment(id, payload.commentValue))
 
-    const handleUpdate = async (e) => {
-        e.preventDefault();
+    dispatch(getAllComments(postId));
+  };
 
-        const payload = {
-            commentValue,
-            id: comment.id,
-            // post_id: postId
-        }
-
-        const id = comment.id
-        // console.log(id)
-        // console.log(payload.commentValue, 'update comment payload??')
-        const updatedComment = await  dispatch(editComment(id, payload.commentValue))
-        // console.log(comment.comment, 'test')
-        // dispatch(editComment(id, payload.commentValue))
-
-
-        dispatch(getAllComments(postId))
-
-    }
-
-
+  if (comment.user_id === userId) {
     return (
-        <>
+      <>
         <form className="edit-comment-form" onSubmit={handleUpdate}>
-
-               <input
-               type="text"
+          <input
+            type="text"
             //    placeholder='Edit your comment...'
-               required
-               value={commentValue}
-               onChange={updateComment}
-               />
-               <button >Save changes</button>
-               </form>
-        </>
-    )
-}
+            required
+            value={commentValue}
+            onChange={updateComment}
+          />
+          <button>Save changes</button>
+        </form>
+      </>
+    );
+  } else {
+    return <></>;
+  }
+};
 
-
-export default EditComment
+export default EditComment;

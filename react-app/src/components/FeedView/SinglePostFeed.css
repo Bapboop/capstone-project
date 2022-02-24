@@ -45,3 +45,7 @@
   height: 100vh;
   /* height: 100%; */
 }
+
+.feed-gap {
+  padding-top: 65px;
+}

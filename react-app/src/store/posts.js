@@ -73,9 +73,17 @@ export const createNewPost = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     });
     if (response.ok) {
-        const post = await response.json();
+        const data = await response.json();
         dispatch(createPost)
-        return post
+        return null
+    } else if (response.status < 500) {
+        const data = await response.json();
+        // console.log('data????', data.errors)
+        if (data.errors) {
+            return data
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
 
@@ -85,6 +93,7 @@ export const getUsersPost = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const posts = await response.json();
+
         dispatch(usersPosts(posts))
     }
 }

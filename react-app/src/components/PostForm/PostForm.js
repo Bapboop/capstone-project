@@ -9,15 +9,17 @@ const PostForm = ({ hideModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [errors, setErrors] = useState([]);
+  // console.log(errors)
+
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
-  // const [errors, setErrors] = useState([]);
 
   const updatePhotoUrl = (e) => setPhotoUrl(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
 
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser);
+  // console.log(sessionUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,38 +31,56 @@ const PostForm = ({ hideModal }) => {
     };
 
     // let errors = [];
+    // if (photoUrl.length < 5) {
+    //   setErrors(['This isn\'t a valid url!'])
+    // }
 
-    const new_post = await dispatch(createNewPost(payload));
+    const data = await dispatch(createNewPost(payload))
+      // console.log('postform data', data.errors)
+      if (data && data.errors){
+        // console.log(data.errors, '?????@@@')
+        setErrors(data.errors)
+      } else {
+        dispatch(getUsersPost(sessionUser.id));
+        hideModal();
+        history.push(`/users/${sessionUser.id}`);
+      }
 
-    if (new_post) {
-      dispatch(getUsersPost(sessionUser.id));
-      hideModal();
-      history.push(`/users/${sessionUser.id}`)
-      // return new_post
-    }
+
+
+    // if (new_post) {
+    //   dispatch(getUsersPost(sessionUser.id));
+    //   hideModal();
+    //   history.push(`/users/${sessionUser.id}`);
+    //   // return new_post
+    // }
   };
 
   return (
+    <form className="postForm" onSubmit={handleSubmit}>
+      <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+      <input
+        type="text"
+        placeholder="Picture URL"
+        required
+        value={photoUrl}
+        onChange={updatePhotoUrl}
+      />
+      <textarea
+        placeholder="Description (optional)"
+        required
+        value={description}
+        onChange={updateDescription}
+      />
 
-      <form className="postForm" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Picture URL"
-          required
-          value={photoUrl}
-          onChange={updatePhotoUrl}
-        />
-        <textarea
-          placeholder="Description (optional)"
-          required
-          value={description}
-          onChange={updateDescription}
-        />
-
-        <button className="post-butt" type="submit">Submit</button>
-      </form>
-
-
+      <button className="post-butt" type="submit">
+        Submit
+      </button>
+    </form>
   );
 };
 

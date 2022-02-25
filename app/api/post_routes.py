@@ -42,7 +42,7 @@ def test_posts(id):
     posts = list()
 
     for u, p in db.session.query(User, Post).filter(User.id == Post.user_id).all():
-                                            # .filter(id == Post.id).all():
+    # .filter(id == Post.id).all():
 
         posts.append({
                 "id": p.id,

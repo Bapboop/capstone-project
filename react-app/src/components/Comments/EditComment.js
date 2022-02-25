@@ -13,6 +13,25 @@ const EditComment = ({ comment, post }) => {
 
   const updateComment = (e) => setCommentValue(e.target.value);
 
+
+  const [showEdit, setShowEdit] = useState(false)
+
+  const handleEditClick = async (e) => {
+    e.preventDefault();
+    setShowEdit(true)
+  }
+
+  const handleCancelClick = async (e) => {
+    e.preventDefault();
+    setShowEdit(false)
+  }
+
+  useEffect(() => {
+    setCommentValue(comment?.comment)
+  }, [comment])
+
+
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -27,12 +46,22 @@ const EditComment = ({ comment, post }) => {
       editComment(id, payload.commentValue)
     );
 
+    setShowEdit(false)
     dispatch(getAllComments(postId));
   };
 
   if (comment.user_id === userId) {
     return (
       <>
+
+     {!showEdit && (
+        <>
+        <button onClick={handleEditClick}>Edit</button>
+
+        </>
+      )}
+
+      {showEdit && (
         <form className="edit-comment-form" onSubmit={handleUpdate}>
           <input
             type="text"
@@ -43,6 +72,8 @@ const EditComment = ({ comment, post }) => {
           />
           <button>Save changes</button>
         </form>
+
+      )}
       </>
     );
   } else {

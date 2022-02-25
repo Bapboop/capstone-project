@@ -16,6 +16,8 @@ const SinglePost = ({ post }) => {
 
   const [currPost, setCurrPost] = useState(post)
 
+
+
   const [showEdit, setShowEdit] = useState(false);
 
   const [description, setDescription] = useState(currPost?.description);
@@ -28,17 +30,12 @@ const SinglePost = ({ post }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     const postId = e.target.id;
-    // console.log(postId, 'Hey, is this working? postId')
-    // // dispatch(deletePost(postId))
+
 
     const deletedPost = await dispatch(deletePost(postId));
-    // console.log(deletedPost)
 
 
-    // if (!deletedPost) {
-    //   dispatch(getUsersPost(userId));
-    //   // history.push(`/users/${userId}`)
-    // }
+
 
     if (!userId) {
       dispatch(getAllPosts())
@@ -60,6 +57,8 @@ const SinglePost = ({ post }) => {
     setShowEdit(false);
   };
 
+
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,6 +66,7 @@ const SinglePost = ({ post }) => {
       id: currPost.id,
       description,
     };
+
 
     const updatedPost = await dispatch(editPost(payload));
     setCurrPost(updatedPost)

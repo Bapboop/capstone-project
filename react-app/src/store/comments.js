@@ -113,11 +113,11 @@ const commentReducer = (state = {}, action) => {
             return newState
         }
         case EDIT_COMMENT: {
-            newState = {
-                ...state,
-                [action.payload.id]: action.payload.comment
-            }
-            return newState
+            // newState = {
+            //     ...state,
+            //     [action.payload.id]: action.payload.comment
+            // }
+            // return newState
         }
 
 

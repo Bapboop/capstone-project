@@ -9,7 +9,7 @@ class Post(db.Model):
     description = db.Column(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-    
+
     comments = db.relationship('Comment', back_populates='post')
 
 
@@ -19,5 +19,6 @@ class Post(db.Model):
             "id": self.id,
             "photo_url": self.photo_url,
             "description": self.description,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            # 'username': self.username
         }

@@ -24,6 +24,28 @@ def user(id):
 @user_routes.route('/<int:id>/posts')
 def users_posts(id):
     # return 'Is this thing on?'
-    posts = Post.query.filter(Post.user_id == id).all()
+    # posts = Post.query.filter(Post.user_id == id).all()
+    # return {'posts': [post.to_dict() for post in posts]}
 
-    return {'posts': [post.to_dict() for post in posts]}
+    posts = list()
+
+    print(id, 'what is this?')
+    for u, p in db.session.query(User, Post).filter(id == User.id).filter(User.id == Post.user_id).all():
+    # .filter(User.id == Post.user_id).all():
+
+                                                  # .filter(id == Post.id).all():
+
+        # print(posts)
+        # print(u.username)
+        posts.append({
+                "id": p.id,
+                "photo_url": p.photo_url,
+                "description": p.description,
+                "user_id": p.user_id,
+                "username": u.username,
+        })
+
+        # print(jsonify(posts.username))
+
+    # print(posts)
+    return {'posts': posts}

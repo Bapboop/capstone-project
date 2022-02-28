@@ -10,7 +10,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
 
-    comments = db.relationship('Comment', back_populates='post')
+    comments = db.relationship('Comment', back_populates='post', cascade="all, delete-orphan")
 
 
 

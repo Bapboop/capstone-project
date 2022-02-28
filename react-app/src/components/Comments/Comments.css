@@ -77,7 +77,8 @@
 }
 
 .comment-form button {
-    width: 60px;
+    width: 50px;
+    margin-left: 5px;
 }
 
 .comment-form input {
@@ -120,4 +121,31 @@
     outline: none;
     border: 1px solid gray;
 
+
+}
+
+
+.comment-post-butt {
+    border: none;
+    background-color: #ffffff;
+    color: #0095f6;
+    font-weight: bold;
+    font-weight: 600px;
+}
+
+
+.comment-post-butt:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.comment-post-butt:disabled {
+    cursor: pointer;
+    color: #C2E6FD;
+}
+
+.comment-form input {
+    border: none;
+    outline: none;
+    padding: 4px;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
@@ -10,6 +10,22 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const errors = [];
+
+    if (password.length <= 0) {
+      errors.push('Password must have a value')
+    }
+
+    if (email.length <= 0) {
+      errors.push('Email must have a value')
+    }
+
+    setErrors(errors);
+  },[email, password])
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -80,7 +96,7 @@ const LoginForm = () => {
             <div>
               <button
                 className="login-butt"
-                // disabled={email.length >= 3 && password.length >= 5 ? false : true}
+                disabled={email.length >= 3 && password.length >= 5 ? false : true}
                 type="submit"
               >
                 Login

@@ -42,7 +42,9 @@ const AddComment = ({ post }) => {
           value={comment}
           onChange={updateComment}
         />
-        <button disabled={!comment ? true : false}className='comment-post-butt'> Post </button>
+        <button
+        // disabled={!comment ? true : false}
+        className='comment-post-butt'> Post </button>
       </form>
       {/* </div> */}
     </>

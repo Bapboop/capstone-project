@@ -13,24 +13,21 @@ const EditComment = ({ comment, post }) => {
 
   const updateComment = (e) => setCommentValue(e.target.value);
 
-
-  const [showEdit, setShowEdit] = useState(false)
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleEditClick = async (e) => {
     e.preventDefault();
-    setShowEdit(true)
-  }
+    setShowEdit(true);
+  };
 
   const handleCancelClick = async (e) => {
     e.preventDefault();
-    setShowEdit(false)
-  }
+    setShowEdit(false);
+  };
 
   useEffect(() => {
-    setCommentValue(comment?.comment)
-  }, [comment])
-
-
+    setCommentValue(comment?.comment);
+  }, [comment]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -46,34 +43,33 @@ const EditComment = ({ comment, post }) => {
       editComment(id, payload.commentValue)
     );
 
-    setShowEdit(false)
+    setShowEdit(false);
     dispatch(getAllComments(postId));
   };
 
   if (comment.user_id === userId) {
     return (
       <>
+        {!showEdit && (
+          <span className="comment-link" onClick={handleEditClick}>
+            <i class="fas fa-edit fa-xs"></i> Edit
+          </span>
+        )}
 
-     {!showEdit && (
-        <>
-        <button onClick={handleEditClick}>Edit</button>
-
-        </>
-      )}
-
-      {showEdit && (
-        <form className="edit-comment-form" onSubmit={handleUpdate}>
-          <input
-            type="text"
-            //    placeholder='Edit your comment...'
-            required
-            value={commentValue}
-            onChange={updateComment}
-          />
-          <button>Save changes</button>
-        </form>
-
-      )}
+        {showEdit && (
+          <form className="edit-comment-form" onSubmit={handleUpdate}>
+            <input
+              type="text"
+              //    placeholder='Edit your comment...'
+              required
+              value={commentValue}
+              onChange={updateComment}
+            />
+            <button className="confirm">
+              <i class="fa-solid fa-check"></i>
+            </button>
+          </form>
+        )}
       </>
     );
   } else {

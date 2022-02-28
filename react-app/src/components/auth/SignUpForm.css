@@ -38,6 +38,11 @@
     Arial, sans-serif;
 }
 
+.signup-form input:focus {
+  outline: none;
+  border: 1px solid gray;
+}
+
 .nav-img {
   margin-top: 10px;
   height: 37px;

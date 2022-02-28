@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllComments, deleteAComment } from "../../store/comments";
 import EditComment from "./EditComment";
 import "../PostForm/SinglePost/SinglePost.css";
+import "./Comments.css";
 
 const ViewComments = ({ post }) => {
   const dispatch = useDispatch();
@@ -25,11 +26,8 @@ const ViewComments = ({ post }) => {
   });
 
   // Temp delete placeholder:
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    const commentId = e.target.id;
-
-    const deletedComment = await dispatch(deleteAComment(commentId));
+  const handleDelete = async (id) => {
+    const deletedComment = await dispatch(deleteAComment(id));
   };
 
   return (
@@ -40,22 +38,26 @@ const ViewComments = ({ post }) => {
         <>
           {comments?.map((comment) => (
             <>
-              <p>
-                {" "}
-                <span className="username">{comment?.username}:</span>{" "}
-                {comment?.comment}
-              </p>
-              <div>
-                <EditComment comment={comment} post={post} />
-                {comment?.user_id === userId && (
-                  <button
-                    id={comment?.id}
-                    className="delete-comment"
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </button>
-                )}
+              <div className="single-comment">
+                <div className="comment">
+                  <div>
+                    <span className="username">{comment?.username}</span>
+                    {comment?.comment}
+                  </div>
+                </div>
+                <div className="comment-options">
+                  <EditComment comment={comment} post={post} />
+                  {comment?.user_id === userId && (
+                    <span
+                      className="comment-link"
+                      onClick={() => {
+                        handleDelete(comment?.id);
+                      }}
+                    >
+                      <i class="fa-solid fa-xmark"></i> Delete
+                    </span>
+                  )}
+                </div>
               </div>
             </>
           ))}

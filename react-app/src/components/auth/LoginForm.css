@@ -30,14 +30,13 @@
   border-radius: 0.25rem;
   margin: 0;
 
-  /* background-color: blue; */
-  /* justify-content: center;
-    align-items: center; */
 }
 
 .login-form input {
   /* border: 5px solid green; */
   border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+
+  /* border: 1 solid #b2dffc; */
   border-radius: 3px;
   padding: 1rem 1rem 1rem 0.25rem;
   height: 29.99px;
@@ -54,7 +53,14 @@
     Arial, sans-serif;
 }
 
+.login-form input:focus {
+  outline: none;
+  border: 1px solid gray;
+}
+
+
 .login-butt {
+  /* outline: none; */
   background-color: #0095f6;
   font-size: 14px;
   /* font-weight: 600; */
@@ -139,7 +145,7 @@
   align-items: center;
 
   background-color: #ffffff;
- 
+
   font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 

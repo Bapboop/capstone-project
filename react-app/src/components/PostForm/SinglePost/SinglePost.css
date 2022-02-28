@@ -1,16 +1,26 @@
 .single-post {
     display: flex;
     max-width: 1332px;
-    height: 100%;
-    max-height: 833px;
+    height: 90vh;
+
+}
+
+.single-post-container {
+    background-color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vh;
+
 }
 
 
+
 .single-post-image  {
-    max-height: 833px;
-    height: 100%;
-    max-width: 734.904px;
-    overflow: fill;
+    width: 100%;
+    /* height: 500px; */
+
 
 }
 
@@ -21,15 +31,11 @@
 }
 
 
-.owner-info {
-    border-bottom: 1px solid #efefef;
-    width: 100%;
-    height: 69.93px;
-    /* temporary: just to display: */
-    margin-bottom: 100px;
-}
-
-
 .username {
     font-weight: bold;
+}
+
+.owner-info {
+    padding: 1rem;
+    border-bottom: 1px solid #dadada;
 }

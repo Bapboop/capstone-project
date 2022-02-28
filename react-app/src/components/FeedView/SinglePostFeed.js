@@ -17,7 +17,7 @@ const PostFeed = ({post}) => {
         <div className='feed-post-container'>
             <div className='feed-post-owner'>
                 <NavLink  style={{ textDecoration: 'none', color: 'black' }} to={`/users/${post?.user_id}`}>
-                <span className="username">
+                <span style={{padding: '1rem'}} className="username">
                     {post?.username}
 
                     </span>
@@ -32,8 +32,8 @@ const PostFeed = ({post}) => {
             {/* <div className='feed-likes'>
                 Likes
             </div> */}
-            <div className='feed-description'>
-                <p> <span className="username"> {post?.username}:</span> {post?.description}</p>
+            <div style={{padding: '1rem'}} className='feed-description'>
+                <span className="username"> {post?.username}:</span> {post?.description}
             </div>
 
             {/* <div className='feed-comments'>

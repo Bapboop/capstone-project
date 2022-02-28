@@ -51,7 +51,7 @@ const EditComment = ({ comment, post }) => {
     return (
       <>
         {!showEdit && (
-          <span className="comment-link" onClick={handleEditClick}>
+          <span className="comment-link edit-link" onClick={handleEditClick}>
             <i class="fas fa-edit fa-xs"></i> Edit
           </span>
         )}

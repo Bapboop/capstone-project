@@ -58,7 +58,7 @@ const Profile = () => {
         {/* <h1> TEST</h1> */}
 
         <div>
-        <ProfileTop />
+        <ProfileTop userId={userId}/>
         </div>
 
 

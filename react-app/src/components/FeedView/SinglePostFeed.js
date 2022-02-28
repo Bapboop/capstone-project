@@ -2,6 +2,7 @@ import React from "react"
 import AddComment from "../Comments/CreateComment"
 import ASinglePostModal from "../PostForm/SinglePost/SinglePostModal"
 import './SinglePostFeed.css'
+import { NavLink } from "react-router-dom"
 
 
 
@@ -15,10 +16,12 @@ const PostFeed = ({post}) => {
 
         <div className='feed-post-container'>
             <div className='feed-post-owner'>
+                <NavLink  style={{ textDecoration: 'none', color: 'black' }} to={`/users/${post?.user_id}`}>
                 <span className="username">
                     {post?.username}
 
                     </span>
+                    </NavLink>
             </div>
 
             <div className='feed-photo'>

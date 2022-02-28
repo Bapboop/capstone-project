@@ -16,7 +16,7 @@ const ViewComments = ({ post }) => {
 
     await dispatch(getAllComments(postId));
     // 500 ms to see loading
-    await new Promise((r) => setTimeout(r, 500));
+    // await new Promise((r) => setTimeout(r, 200));
     setLoading(false);
   }, [post]);
 

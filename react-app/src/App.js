@@ -61,7 +61,7 @@ function App() {
           <Profile />
         </Route>
         <Route>
-          <div className="no-page">
+          <div class="no-page">
 
           <h1> You're lost, there's nothing here!</h1>
           </div>

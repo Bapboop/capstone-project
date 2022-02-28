@@ -3,6 +3,29 @@ It's like Instagram, but for gardens!
 
 A project inspired by Instagram, you can visit the live site [here](https://gardengram.herokuapp.com/). Gardengram is an application that allows users to share their garden with others!
 
+- Sign in / Sign up:
+![Splash-login](https://user-images.githubusercontent.com/6257940/155988409-5b4267e5-2cf9-4be6-9b8c-5c29568fd978.PNG)
+![Signup-splash](https://user-images.githubusercontent.com/6257940/155988426-524cf6df-9c10-4db1-9e0b-8dc02d081eb9.PNG)
+
+- Splash page upon logging in: 
+![splash-page](https://user-images.githubusercontent.com/6257940/155988457-17b67067-cbbc-4d16-973d-d3c49141bdc1.PNG)
+
+- User's profile page:
+![personal-page](https://user-images.githubusercontent.com/6257940/155988556-0147f5b8-b754-4cf2-bc12-f6852fa92613.PNG)
+
+- Viewing single posts:
+![new-single-photo](https://user-images.githubusercontent.com/6257940/155988897-4ee93f72-738d-4ee7-baf6-41b9003d79d4.PNG)
+
+
+
+
+# Technologies used:
+- Backend:
+   - Python, Flask, SQLAlchemy PostgreSQL, Docker, WTForms
+- Frontend: 
+   - JavaScript, React, Redux, Vanilla CSS
+
+
 # Local Installation:
 - Running locally requires Python 3.9 and PostgreSQL.
 

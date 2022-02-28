@@ -17,11 +17,24 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    let errArr = []
+    console.log(errArr)
+    if (password !== repeatPassword) {
+      errArr.push('Passwords do not match')
+    }
+
+    if (firstname.length < 2) {
+      errArr.push('First name must be more 2 or more letters')
+    }
+    if (errArr.length > 0) {
+      setErrors([errArr])
+    }
+   if (password === repeatPassword) {
       const data = await dispatch(
         signUp(username, email, password, firstname, lastname)
       );
       if (data) {
+        console.log(data)
         setErrors(data);
       }
     }
@@ -62,19 +75,22 @@ const SignUpForm = () => {
 
   return (
     <div className="login-container">
-      <form onSubmit={onSignUp}>
         <div className="signup-form">
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+      <form onSubmit={onSignUp}>
           <div className="login-header">
             <img src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645347043/ok-godo_lkgfaa.svg"  alt="logo"/>
           </div>
+          <h3 className='site-info'>It's like Instagram, but for gardens!</h3>
           <div>
+          <div className="signup-errors">
+            {errors.map((error, ind) => (
+
+              <div key={ind}>{error}</div>
+
+            ))}
+          </div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="Username"
               type="text"
               name="username"
@@ -84,7 +100,7 @@ const SignUpForm = () => {
           </div>
           <div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="First Name"
               type="text"
               name="firstname"
@@ -94,7 +110,7 @@ const SignUpForm = () => {
           </div>
           <div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="Last Name"
               type="text"
               name="lastname"
@@ -104,7 +120,7 @@ const SignUpForm = () => {
           </div>
           <div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="Email"
               type="text"
               name="email"
@@ -114,7 +130,7 @@ const SignUpForm = () => {
           </div>
           <div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="Password"
               type="password"
               name="password"
@@ -124,17 +140,19 @@ const SignUpForm = () => {
           </div>
           <div>
             <label></label>
-            <input
+            <input className="signup-input"
               placeholder="Confirm password"
               type="password"
               name="repeat_password"
               onChange={updateRepeatPassword}
               value={repeatPassword}
-              required={true}
+              // required={true}
             ></input>
           </div>
           <div>
-            <button className="login-butt" type="submit">
+            <button className="login-butt"
+            disabled={!username || !password || !email || !repeatPassword || !firstname || !lastname ? true: false}
+            type="submit">
               Sign Up
             </button>
           </div>
@@ -142,8 +160,9 @@ const SignUpForm = () => {
           <button className="demo-butt" type="submit" onClick={demoLogin}>
             Demo User
           </button>
-        </div>
       </form>
+
+        </div>
       <div className="signup-redirect">
         <p>
           Have an account?
@@ -151,6 +170,17 @@ const SignUpForm = () => {
             <NavLink to="/">Log in</NavLink>
           </span>
         </p>
+      </div>
+      <div className="footer-div">
+        <div className='me'>Robert Popphan</div>
+        <div className="links">
+          <a href="https://github.com/Bapboop" target="_blank">
+            <i className="fa-brands fa-github fa-2x"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/robert-popphan-0b6711126/" target="_blank">
+            <i className="fa-brands fa-linkedin fa-2x"></i>
+          </a>
+        </div>
       </div>
     </div>
   );

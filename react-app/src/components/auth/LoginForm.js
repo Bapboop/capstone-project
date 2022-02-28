@@ -43,31 +43,34 @@ const LoginForm = () => {
       <form onSubmit={onLogin}>
         <div className="login-form">
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
             <div className="login-header">
-              <img src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645347043/ok-godo_lkgfaa.svg" alt="logo" />
+              <img
+                src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645347043/ok-godo_lkgfaa.svg"
+                alt="logo"
+              />
+            </div>
+            <h3 className="site-info">It's like Instagram, but for gardens!</h3>
+            <div className="login-errors">
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
             </div>
             <div className="email-signin">
-
-            <label htmlFor="email"></label>
-            <input
-              placeholder=" Email "
-              name="email"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={updateEmail}
+              <label htmlFor="email"></label>
+              <input
+                placeholder=" Email "
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
               />
-              </div>
+            </div>
           </div>
-          <div className='password'>
+          <div className="password">
             <label htmlFor="password"></label>
             <input
-            placeholder=" Password "
+              placeholder=" Password "
               name="password"
               type="password"
               placeholder="Password"
@@ -75,7 +78,13 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
             <div>
-              <button className="login-butt" type="submit">
+              <button
+                className="login-butt"
+                disabled={
+                  email.length >= 3 && password.length >= 5 ? false : true
+                }
+                type="submit"
+              >
                 Login
               </button>
             </div>
@@ -88,11 +97,21 @@ const LoginForm = () => {
       <div className="signup-redirect">
         <p>
           Don't have an account?
-          <span className='sign-up'>
-
-          <NavLink to="/signup">Sign up</NavLink>
+          <span className="sign-up">
+            <NavLink to="/signup">Sign up</NavLink>
           </span>
         </p>
+      </div>
+      <div className="footer-div">
+        <div className='me'>Robert Popphan</div>
+        <div className="links">
+          <a href="https://github.com/Bapboop" target="_blank">
+            <i className="fa-brands fa-github fa-2x"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/robert-popphan-0b6711126/" target="_blank">
+            <i className="fa-brands fa-linkedin fa-2x"></i>
+          </a>
+        </div>
       </div>
     </>
   );

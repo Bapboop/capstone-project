@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import ViewComments from "../../Comments/ViewComments";
 import "./SinglePost.css";
 import EditPostForm from "../EditPost/EditPostForm";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { alertPost, deletePost, getAllPosts } from "../../../store/posts";
 import { getUsersPost } from "../../../store/posts";
@@ -80,7 +80,11 @@ const SinglePost = ({ post }) => {
           <div className="post-info">
             <div className="owner-info">
               {/* Owner Pic Username */}
+              <NavLink  style={{ textDecoration: 'none', color: 'black' }} to={`/users/${post?.user_id}`}>
+
+
               <span className="username">{post?.username}</span>
+              </NavLink>
               {!showEdit && (
                 <>
                   <p>{currPost?.description}</p>

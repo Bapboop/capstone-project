@@ -1,3 +1,7 @@
+.feed-gap {
+  background-color: #fafafa
+}
+
 .feed-post-container {
   display: flex;
   flex-direction: column;

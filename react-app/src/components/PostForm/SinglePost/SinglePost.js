@@ -14,9 +14,7 @@ const SinglePost = ({ post }) => {
   const user = useSelector((state) => state.session.user);
   const currUser = user?.id;
 
-  const [currPost, setCurrPost] = useState(post)
-
-
+  const [currPost, setCurrPost] = useState(post);
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -25,23 +23,17 @@ const SinglePost = ({ post }) => {
 
   const { userId } = useParams();
 
-
-
   const handleDelete = async (e) => {
     e.preventDefault();
     const postId = e.target.id;
 
-
     const deletedPost = await dispatch(deletePost(postId));
 
-
-
-
     if (!userId) {
-      dispatch(getAllPosts())
+      dispatch(getAllPosts());
     } else {
-        dispatch(getUsersPost(post?.user_id));
-        // dispatch(getAllPosts())
+      dispatch(getUsersPost(post?.user_id));
+      // dispatch(getAllPosts())
     }
   };
 
@@ -57,8 +49,6 @@ const SinglePost = ({ post }) => {
     setShowEdit(false);
   };
 
-
-
   const handleEditSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,18 +57,16 @@ const SinglePost = ({ post }) => {
       description,
     };
 
-
     const updatedPost = await dispatch(editPost(payload));
-    setCurrPost(updatedPost)
-    setShowEdit(false)
+    setCurrPost(updatedPost);
+    setShowEdit(false);
 
     if (!userId) {
-      dispatch(getAllPosts())
+      dispatch(getAllPosts());
     } else {
-        dispatch(getUsersPost(post?.user_id));
-        // dispatch(getAllPosts())
+      dispatch(getUsersPost(post?.user_id));
+      // dispatch(getAllPosts())
     }
-
   };
 
   return (
@@ -89,50 +77,48 @@ const SinglePost = ({ post }) => {
         </div>
 
         <div className="single-post-info">
-          <div className="owner-info">
+          <div className="post-info">
+            <div className="owner-info">
+              {/* Owner Pic Username */}
+              <span className="username">{post?.username}</span>
+              {!showEdit && (
+                <>
+                  <p>{currPost?.description}</p>
+                  {currUser === currPost?.user_id && (
+                    <>
+                      <button onClick={handleEditClick}>Edit</button>
+                      <button
+                        id={currPost?.id}
+                        className="delete-button"
+                        onClick={handleDelete}
+                      >
+                        Delete
+                      </button>
+                    </>
+                  )}
+                </>
+              )}
+              {showEdit && (
+                <>
+                  <div>{currPost?.description}</div>
+                  {/* <EditPostForm post={post} setShowEdit={setShowEdit} /> */}
+                  <textarea
+                    placeholder={currPost?.description}
+                    type="text"
+                    value={description}
+                    onChange={updateDescription}
+                  />
+                  <button onClick={handleEditSubmit}>Save changes</button>
+                  <button onClick={handleCancelClick}>cancel</button>
+                </>
+              )}
+              <div></div>
+            </div>
+            <div className="post-description"></div>
 
-            {/* Owner Pic Username */}
-            <span className="username">
-            {post?.username}
-
-            </span>
-            {!showEdit && (
-              <>
-                <p>{currPost?.description}</p>
-                {currUser === currPost?.user_id && (
-                  <>
-                    <button onClick={handleEditClick}>Edit</button>
-                    <button
-                      id={currPost?.id}
-                      className="delete-button"
-                      onClick={handleDelete}
-                    >
-                      Delete
-                    </button>
-                  </>
-                )}
-              </>
-            )}
-            {showEdit && (
-              <>
-                <p>{currPost?.description}</p>
-                {/* <EditPostForm post={post} setShowEdit={setShowEdit} /> */}
-                <textarea
-                  placeholder={currPost?.description}
-                  type="text"
-                  value={description}
-                  onChange={updateDescription}
-                />
-                <button onClick={handleEditSubmit}>Save changes</button>
-                <button onClick={handleCancelClick}>cancel</button>
-              </>
-            )}
-            <div></div>
-          </div>
-          <div className="post-description"></div>
-
-          <div className="post-comments">
-            <ViewComments post={currPost} />
+            <div className="post-comments">
+              <ViewComments post={currPost} />
+            </div>
           </div>
 
           <div className="feed-new-comments">

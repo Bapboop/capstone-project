@@ -30,7 +30,7 @@ const PostFeed = ({post}) => {
                 Likes
             </div> */}
             <div className='feed-description'>
-                <p> <span className="username"> {post?.username}</span>: {post?.description}</p>
+                <p> <span className="username"> {post?.username}:</span> {post?.description}</p>
             </div>
 
             {/* <div className='feed-comments'>

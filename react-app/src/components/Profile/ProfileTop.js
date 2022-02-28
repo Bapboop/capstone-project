@@ -23,8 +23,8 @@ const ProfileTop = ({ userId }) => {
         <img
           className="avatar"
           src={
-            user?.photo_url
-              ? user?.photo_url
+            user?.profile_pic
+              ? user?.profile_pic
               : "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
           }
         />

@@ -4,7 +4,7 @@ import "./ProfileTop.css";
 
 const ProfileTop = ({ userId }) => {
   const [user, setUser] = useState({});
-  console.log(user, "Hello, mic test 12");
+  // console.log(user, "Hello, mic test 12");
 
   useEffect(async () => {
     if (!userId) {

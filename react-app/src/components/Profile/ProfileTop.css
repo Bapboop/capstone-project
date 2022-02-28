@@ -1,24 +1,23 @@
 .profile-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 100px;
 
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    padding-top: 100px;
-
-    margin: 0 auto 30px;
-    max-width: 935px;
-    padding-bottom: 50px;
-    border-bottom: 1px solid rgba(var(--b38,219,219,219),1);
+  margin: 0 auto 30px;
+  max-width: 935px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(var(--b38, 219, 219, 219), 1);
 }
 
 .avatar {
-    border-radius: 1000px;
-    max-width: 150px;
-    max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 12rem;
+  width: 12rem;
+  padding: 1rem;
 }
 
-
 .info-container {
-    padding: 20px;
-
+  padding: 20px;
 }

@@ -5,27 +5,37 @@ from app.models import db, Post
 def seed_posts():
     demo1 = Post(
         photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1645076095/Gardengram/garden4_zcme0j.png",
-        description="Wow.",
+        description="Dream garden!",
         user_id = 1,
         )
     demo2 = Post(
         photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1645076095/Gardengram/garden1_njwrdv.jpg",
-        description="Cool!",
+        description="I can't wait until spring!",
         user_id = 1,
         )
     demo3 = Post(
         photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1645076094/Gardengram/garden5_zo24hf.jpg",
-        description="Amazing",
-        user_id = 2,
+        description="Harvest haul!",
+        user_id = 3,
         )
     demo4 = Post(
         photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1645076094/Gardengram/garedn2_okdkup.jpg",
         description="Wow.",
-        user_id = 2,
+        user_id = 3,
         )
     demo5 = Post(
         photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1645076094/Gardengram/garden3_qkeosg.jpg",
-        description="Wow.",
+        description="Fun garden ideas!.",
+        user_id = 3,
+        )
+    demo6 = Post(
+        photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1646049318/Gardengram/Chia-Pet-Keyboard_m4w0yv.jpg",
+        description="My kind of garden!",
+        user_id = 2,
+        )
+    demo7 = Post(
+        photo_url="https://res.cloudinary.com/dd9qejhag/image/upload/v1646049811/Gardengram/zzzzzzzzz_ed52md.png",
+        description="Keeping my garden green!",
         user_id = 2,
         )
 
@@ -35,6 +45,8 @@ def seed_posts():
     db.session.add(demo3)
     db.session.add(demo4)
     db.session.add(demo5)
+    db.session.add(demo6)
+    db.session.add(demo7)
 
     db.session.commit()
 

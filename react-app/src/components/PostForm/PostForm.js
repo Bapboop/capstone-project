@@ -58,7 +58,7 @@ const PostForm = ({ hideModal }) => {
 
   return (
     <form className="postForm" onSubmit={handleSubmit}>
-      <div>
+      <div className="errors">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -72,7 +72,7 @@ const PostForm = ({ hideModal }) => {
       />
       <textarea
         placeholder="Description (optional)"
-        required
+        // required
         value={description}
         onChange={updateDescription}
       />

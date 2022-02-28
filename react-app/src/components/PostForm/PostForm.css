@@ -28,6 +28,9 @@
 
 
 .postForm input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     border-radius: 3px;
     padding: 1rem 1rem 1rem 0.25rem;
     height: 29.99px;
@@ -35,17 +38,31 @@
     width: 268.01px;
     margin: 8px 20px;
     background-color: #fafafa;
+    outline: none;
+}
+
+.postForm input:focus {
+    outline: none;
+  border: 1px solid gray;
 }
 
 .postForm textarea {
 
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 1rem 1rem 1rem 0.25rem;
     height: 50px;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    outline: none;
 
     width: 268.01px;
     margin: 8px 20px;
     background-color: #fafafa;
+    overflow-y: hidden;
+}
+
+.postForm textarea:focus {
+    outline: none;
+  border: 1px solid gray;
 }
 
 
@@ -62,6 +79,8 @@
     margin: 8px 20px;
     border-radius: 3px;
     color: white;
+
+    cursor:pointer;
 }
 
 
@@ -69,3 +88,16 @@
     cursor: pointer;
 
 }
+
+.errors {
+
+    color: #ed4956;
+    margin: 10px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    line-height: 18px;
+}
+
+

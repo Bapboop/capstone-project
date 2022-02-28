@@ -90,10 +90,10 @@ const SinglePost = ({ post }) => {
                   <p>{currPost?.description}</p>
                   {currUser === currPost?.user_id && (
                     <>
-                      <button onClick={handleEditClick}>Edit</button>
+                      <button className="edit-description-button" onClick={handleEditClick}>Edit</button>
                       <button
                         id={currPost?.id}
-                        className="delete-button"
+                        className="delete-description-button"
                         onClick={handleDelete}
                       >
                         Delete
@@ -106,14 +106,18 @@ const SinglePost = ({ post }) => {
                 <>
                   <div>{currPost?.description}</div>
                   {/* <EditPostForm post={post} setShowEdit={setShowEdit} /> */}
+                  <div className='description-options'>
+
                   <textarea
-                    placeholder={currPost?.description}
-                    type="text"
-                    value={description}
-                    onChange={updateDescription}
+                  className="edit-text"
+                  placeholder={currPost?.description}
+                  type="text"
+                  value={description}
+                  onChange={updateDescription}
                   />
-                  <button onClick={handleEditSubmit}>Save changes</button>
-                  <button onClick={handleCancelClick}>cancel</button>
+                  <button className="save-changes" onClick={handleEditSubmit}>Save changes</button>
+                  {/* <button className="cancel-changes" onClick={handleCancelClick}>cancel</button> */}
+                  </div>
                 </>
               )}
               <div></div>

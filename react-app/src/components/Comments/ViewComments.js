@@ -34,14 +34,16 @@ const ViewComments = ({ post }) => {
     <>
       {loading ? (
         <img className='load-gif' src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645754503/Gardengram/Spinner-1s-200px_spauch.gif" />
-     ) : (
+      ) : (
         <>
           {comments?.map((comment) => (
             <>
+              {/* {console.log(comment, '---------<<<<')} */}
               <div className="single-comment">
                 <div className="comment">
                   <div>
-                    <span className="username">{comment?.username}</span>
+
+                    <span className="username"> <img className="comment-profile" src={comment?.profile_pic}/> {comment?.username}</span>
                     {comment?.comment}
                   </div>
                 </div>

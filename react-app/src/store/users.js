@@ -9,11 +9,11 @@ const getUserProfile = (user) => {
 
 export const getAUserProfile = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/${userId}`);
-  console.log(response, '--------------')
+  // console.log(response, '--------------')
 
   if (response.ok) {
-      const user = await response.json();
-      console.log(user, '!!!!!!!!!!!!!!!!')
+    const user = await response.json();
+    // console.log(user, '!!!!!!!!!!!!!!!!')
 
     dispatch(getUserProfile(user));
   }
@@ -24,7 +24,7 @@ const userReducer = (state = {}, action) => {
 
   switch (action.type) {
     case GET_USER: {
-      newState =  { user: action.payload };
+      newState = { user: action.payload };
       return newState;
     }
     default:

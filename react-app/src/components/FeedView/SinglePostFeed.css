@@ -24,7 +24,15 @@
 
   max-width: 613.99px;
   width: 613.99px;
+
+  display: flex;
+
+  /* border: 3px solid green; */
+  
+
 }
+
+
 
 .feed-photo img {
   max-width: 613.99px;
@@ -52,4 +60,12 @@
 
 .feed-gap {
   padding-top: 65px;
+}
+
+
+.feed-pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 1000px;
+
 }

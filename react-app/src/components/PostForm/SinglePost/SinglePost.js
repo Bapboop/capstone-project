@@ -79,11 +79,16 @@ const SinglePost = ({ post }) => {
         <div className="single-post-info">
           <div className="post-info">
             <div className="owner-info">
+
               {/* Owner Pic Username */}
               <NavLink  style={{ textDecoration: 'none', color: 'black' }} to={`/users/${post?.user_id}`}>
 
-
-              <span className="username">{post?.username}</span>
+              {/* {console.log(post, '@@@@@---------')}
+              <div className="name-pic">
+                 <img className="post-profile" src={post?.profile_pic ? post?.profile_pic : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"}/>
+              </div> */}
+              <span className="username">
+                  {post?.username}</span>
               </NavLink>
               {!showEdit && (
                 <>

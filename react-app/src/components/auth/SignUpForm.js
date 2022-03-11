@@ -67,7 +67,7 @@ const SignUpForm = () => {
         signUp(username, email, password, firstname, lastname)
       );
       if (data) {
-        console.log(data)
+        // console.log(data)
         setErrors(data);
       }
     }

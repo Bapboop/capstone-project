@@ -16,8 +16,8 @@ const ViewComments = ({ post }) => {
     setLoading(true);
 
     await dispatch(getAllComments(postId));
-    // 500 ms to see loading
-    // await new Promise((r) => setTimeout(r, 200));
+    // 200 ms to see loading
+    await new Promise((r) => setTimeout(r, 200));
     setLoading(false);
   }, [post]);
 
@@ -33,7 +33,7 @@ const ViewComments = ({ post }) => {
   return (
     <>
       {loading ? (
-        <img src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645754503/Gardengram/Spinner-1s-200px_spauch.gif" />
+        <img className='load-gif' src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645754503/Gardengram/Spinner-1s-200px_spauch.gif" />
       ) : (
         <>
           {comments?.map((comment) => (

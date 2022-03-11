@@ -28,11 +28,6 @@ def feed_posts():
 
 
 
-    # posts = Post.query.all()
-    # return{'posts': [post.to_dict() for post in posts]}
-
-
-
 
 # Gets a post by id
 @post_routes.route('/<int:id>')

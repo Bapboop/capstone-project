@@ -14,7 +14,6 @@ const AddComment = ({ post }) => {
 
 
   const handleSubmit = async (e) => {
-    // console.log('INSIDE OF HANDLE SUBMIT CREATE COMMENT')
     e.preventDefault();
 
     const payload = {
@@ -23,7 +22,6 @@ const AddComment = ({ post }) => {
       post_id: postId,
     };
 
-    // console.log(payload, 'payload?????????????????????')
     await dispatch(createNewComment(payload));
 
     dispatch(getAllComments(post?.id));
@@ -43,7 +41,7 @@ const AddComment = ({ post }) => {
           onChange={updateComment}
         />
         <button
-        // disabled={!comment ? true : false}
+        disabled={!comment ? true : false}
         className='comment-post-butt'> Post </button>
       </form>
       {/* </div> */}

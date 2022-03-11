@@ -12,3 +12,15 @@
     height: 293px;
     object-fit: cover;
 }
+
+.load-gif-profile {
+    position: relative;
+    top: 40%;
+    right: 30%;
+    left: 45%;
+    bottom: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid green; */
+}

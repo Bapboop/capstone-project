@@ -23,6 +23,7 @@ def feed_posts():
                 "description": p.description,
                 "user_id": p.user_id,
                 "username": u.username,
+                "profile_pic": u.profile_pic
         })
 
     return {'posts': posts}

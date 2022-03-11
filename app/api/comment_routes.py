@@ -23,6 +23,7 @@ def get_all_comments(post_id):
             'user_id': c.user_id,
             'post_id': c.post_id,
             'username': u.username,
+            "profile_pic": u.profile_pic
         })
 
 

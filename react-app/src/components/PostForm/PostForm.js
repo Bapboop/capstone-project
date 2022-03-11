@@ -62,7 +62,7 @@ const PostForm = ({ hideModal }) => {
       // console.log('postform data', data.errors)
       if (data && data.errors) {
         // console.log(data.errors, '?????@@@')
-        console.log(data.errors)
+        // console.log(data.errors)
         setErrors(data.errors);
       } else {
         dispatch(getUsersPost(sessionUser.id));
@@ -76,7 +76,7 @@ const PostForm = ({ hideModal }) => {
       setImageLoading(false);
       // a real app would probably use more advanced
       // error handling
-      console.log("error");
+      // console.log("error");
     }
 
   };
@@ -87,8 +87,8 @@ const PostForm = ({ hideModal }) => {
 
       setTestPreview(URL.createObjectURL(file))
       setImage(file);
-      console.log(file, 'file?????')
-      console.log(image, 'image?????')
+      // console.log(file, 'file?????')
+      // console.log(image, 'image?????')
     }
   };
 

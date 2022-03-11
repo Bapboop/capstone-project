@@ -18,7 +18,10 @@ const PostFeed = ({post}) => {
             <div className='feed-post-owner'>
                 <NavLink  style={{ textDecoration: 'none', color: 'black' }} to={`/users/${post?.user_id}`}>
                 <span style={{padding: '1rem'}} className="username">
+                    <img className="feed-pic" src={post?.profile_pic ? post?.profile_pic : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"}/>
+                    {/* {console.log(post, '@@@@@@@------')} */}
                     {post?.username}
+
 
                     </span>
                     </NavLink>

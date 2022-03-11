@@ -43,6 +43,7 @@ def users_posts(id):
                 "description": p.description,
                 "user_id": p.user_id,
                 "username": u.username,
+                "profile_pic": u.profile_pic
         })
 
         # print(jsonify(posts.username))

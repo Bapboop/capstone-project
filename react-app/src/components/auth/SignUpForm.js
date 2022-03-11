@@ -17,26 +17,26 @@ const SignUpForm = () => {
 
 
 
-  useEffect(() => {
-    const errors = [];
-    if (username.length <= 0) {
-      errors.push('Username must have a value')
-    }
-    if (password.length <= 0) {
-      errors.push('Password must have a value')
-    }
-    if (firstname.length <= 0) {
-      errors.push('First name must have a value')
-    }
-    if (lastname.length <= 0) {
-      errors.push('Last name must have a value')
-    }
-    if (email.length <= 0) {
-      errors.push('Email must have a value')
-    }
+  // useEffect(() => {
+  //   const errors = [];
+  //   if (username.length <= 0) {
+  //     errors.push('Username must have a value')
+  //   }
+  //   if (password.length <= 0) {
+  //     errors.push('Password must have a value')
+  //   }
+  //   if (firstname.length <= 0) {
+  //     errors.push('First name must have a value')
+  //   }
+  //   if (lastname.length <= 0) {
+  //     errors.push('Last name must have a value')
+  //   }
+  //   if (email.length <= 0) {
+  //     errors.push('Email must have a value')
+  //   }
 
-    setErrors(errors);
-  },[username, password, firstname, lastname, email])
+  //   setErrors(errors);
+  // },[username, password, firstname, lastname, email])
 
 
 

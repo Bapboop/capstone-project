@@ -34,7 +34,7 @@ const ViewComments = ({ post }) => {
     <>
       {loading ? (
         <img className='load-gif' src="https://res.cloudinary.com/dd9qejhag/image/upload/v1645754503/Gardengram/Spinner-1s-200px_spauch.gif" />
-      ) : (
+     ) : (
         <>
           {comments?.map((comment) => (
             <>

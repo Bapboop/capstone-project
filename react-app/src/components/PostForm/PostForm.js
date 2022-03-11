@@ -8,9 +8,13 @@ import EditPostForm from "./EditPost/EditPostForm";
 const PostForm = ({ hideModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const [errors, setErrors] = useState([]);
-  // console.log(errors)
+  console.log(errors)
+
+  const [testPreview, setTestPreview] = useState("")
 
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -24,51 +28,88 @@ const PostForm = ({ hideModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      user_id: sessionUser.id,
-      photo_url: photoUrl,
-      description: description,
-    };
+    // Image upload starts here
+    const formData = new FormData();
+    formData.append("image", image);
+    // console.log(formData, " THIS IS THE FORM DATA!!!");
+    // console.log(image, "does the image have a value?");
 
-    // let errors = [];
-    // if (photoUrl.length < 5) {
-    //   setErrors(['This isn\'t a valid url!'])
-    // }
+    // aws uploads can be a bit slow—displaying
+    // some sort of loading message is a good idea
+    setImageLoading(true);
 
-    const data = await dispatch(createNewPost(payload))
+    const res = await fetch("/api/posts/image", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      const datatest = await res.json();
+      console.log(datatest.url, "is the url working?");
+      setPhotoUrl(datatest?.url)
+      // console.log(datatest, ' is this working?')
+      // setImage(datatest.url);
+      setImageLoading(false);
+
+      const payload = {
+        user_id: sessionUser.id,
+        photo_url: datatest.url,
+        description: description,
+      };
+
+      const data = await dispatch(createNewPost(payload));
+
       // console.log('postform data', data.errors)
-      if (data && data.errors){
+      if (data && data.errors) {
         // console.log(data.errors, '?????@@@')
-        setErrors(data.errors)
+        console.log(data.errors)
+        setErrors(data.errors);
       } else {
         dispatch(getUsersPost(sessionUser.id));
         hideModal();
         history.push(`/users/${sessionUser.id}`);
       }
+      // history.push("/images");
+    } else {
 
+      setErrors(['Make sure your file is a pdf, png, jpg, jpeg or gif.'])
+      setImageLoading(false);
+      // a real app would probably use more advanced
+      // error handling
+      console.log("error");
+    }
 
+  };
 
-    // if (new_post) {
-    //   dispatch(getUsersPost(sessionUser.id));
-    //   hideModal();
-    //   history.push(`/users/${sessionUser.id}`);
-    //   // return new_post
-    // }
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+
+      setTestPreview(URL.createObjectURL(file))
+      setImage(file);
+      console.log(file, 'file?????')
+      console.log(image, 'image?????')
+    }
   };
 
   return (
     <form className="postForm" onSubmit={handleSubmit}>
       <div className="errors">
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+          ))}
+      </div>
+          <img className="preview-post-pic" src={testPreview}></img>
       <input
-        type="text"
-        placeholder="Picture URL"
-        required
-        value={photoUrl}
-        onChange={updatePhotoUrl}
+        className="file-upload"
+        type="file"
+        accept="image/*"
+        onChange={updateImage}
+        // type="text"
+        // placeholder="Picture URL"
+        // required
+        // value={photoUrl}
+        // onChange={updatePhotoUrl}
       />
       <textarea
         placeholder="Description (optional)"

@@ -4,14 +4,14 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', profile_pic='https://res.cloudinary.com/dd9qejhag/image/upload/v1646049499/Gardengram/image_crts8i.jpg', first_name='green', last_name='finger', password='password')
+        username='GreenFinger', email='demo@aa.io', profile_pic='https://res.cloudinary.com/dd9qejhag/image/upload/v1646049499/Gardengram/image_crts8i.jpg', first_name='Green', last_name='Finger', password='password')
     barry = User (
         username='Barry', email='barry@barry.com', profile_pic='https://res.cloudinary.com/dd9qejhag/image/upload/v1646049154/Gardengram/2021summer-wild-berries-1188x792_jrd5zz.jpg', first_name='Barry', last_name="Berry", password='barry'
     )
     marnie = User(
-        username='marnie', email='marnie@aa.io', first_name='marnie', last_name='idk', password='password')
+        username='Marnie', email='marnie@aa.io', profile_pic='https://res.cloudinary.com/dd9qejhag/image/upload/v1649212932/Gardengram/Marnie_ydcljz.png', first_name='Marnie', last_name='M', password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', first_name='bobbie', last_name='idk', password='password')
+        username='Joe', email='bobbie@aa.io', profile_pic='https://res.cloudinary.com/dd9qejhag/image/upload/v1649213354/Gardengram/Joe_nqwxiv.png', first_name='Joe', last_name='M', password='password')
 
     db.session.add(demo)
     db.session.add(barry)

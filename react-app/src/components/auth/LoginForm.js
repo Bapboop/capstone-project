@@ -96,7 +96,7 @@ const LoginForm = () => {
             <div>
               <button
                 className="login-butt"
-                disabled={email.length >= 3 && password.length >= 5 ? false : true}
+                disabled={email.length >= 3 && password.length >= 3 ? false : true}
                 type="submit"
               >
                 Login

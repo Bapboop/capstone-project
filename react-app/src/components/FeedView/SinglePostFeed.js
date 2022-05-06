@@ -20,7 +20,11 @@ const PostFeed = ({post}) => {
                 <span style={{padding: '1rem'}} className="username">
                     <img className="feed-pic" src={post?.profile_pic ? post?.profile_pic : "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"}/>
                     {/* {console.log(post, '@@@@@@@------')} */}
+                    {/* <div> */}
                     {post?.username}
+
+                    {/* </div> */}
+
 
 
                     </span>

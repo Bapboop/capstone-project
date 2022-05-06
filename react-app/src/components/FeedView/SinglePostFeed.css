@@ -19,15 +19,15 @@
 }
 
 .feed-post-owner {
+
+  /* display: flex; */
+  /* align-items: center; */
+
   max-height: 70.92px;
   height: 70.92px;
 
   max-width: 613.99px;
   width: 613.99px;
-
-  display: flex;
-
-  /* border: 3px solid green; */
 
 
 }

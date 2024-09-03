@@ -1,7 +1,7 @@
 # Gardengram
 It's like Instagram, but for gardens!
 
-A project inspired by Instagram, you can visit the live site [here](https://gardengram.herokuapp.com/). Gardengram is an application that allows users to share their garden with others!
+A project inspired by Instagram -- Gardengram is an application that allows users to share their garden with others!
 
 - Sign in / Sign up:
 ![Splash-login](https://user-images.githubusercontent.com/6257940/155988409-5b4267e5-2cf9-4be6-9b8c-5c29568fd978.PNG)
